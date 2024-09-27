@@ -4,8 +4,11 @@ exports.config = {
 
   services: [],
 
-  specs: ['../features/features-list/trello.feature',
-    '../features/features-list/boards.feature'
+  specs: ['../features/features-list/cards.feature',
+    '../features/features-list/boards.feature',
+    '../features/features-list/general_settings.feature',
+    '../features/features-list/lists.feature',
+    '../features/features-list/signup.feature',
   ],
 
   exclude: [],
