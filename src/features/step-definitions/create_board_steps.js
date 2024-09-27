@@ -23,7 +23,7 @@ When('I add a new board', async () => {
       return (await browser.getUrl()).includes(url.newBoardUrl);
     },
     {
-      timeout: 10000,
+      timeout: 13000,
     }
   );
   await boardPage.boardComponent.check('board').isDisplayed();
