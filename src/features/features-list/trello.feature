@@ -6,11 +6,6 @@ Feature: Trello Feature
     When I update workspace details
     Then the workspace settings should be updated successfully
 
-@login
-   Scenario: Creating a new board
-   Given I"m on the boards page
-   When I add a new board
-   Then a new board should be created and displayed
 
 @login
    Scenario: Creating a new card on a list
@@ -35,14 +30,6 @@ Feature: Trello Feature
    Given I am on a Trello board with multiple cards
    When I apply a filter for specific criteria
    Then only cards matching the criteria should be displayed
-
-
-@login
-  Scenario: Searching for the boards
-  Given I am on the boards page
-  And I seek the boards
-  Then only necessary boards should be displayed
-
 
   Scenario: Sign up for a new Trello account
   Given the Trello sign up page is displayed

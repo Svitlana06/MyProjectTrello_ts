@@ -24,6 +24,7 @@ When('I add a new board', async () => {
     },
     {
       timeout: 13000,
+      
     }
   );
   await boardPage.boardComponent.check('board').isDisplayed();

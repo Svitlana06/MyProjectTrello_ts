@@ -4,7 +4,9 @@ exports.config = {
 
   services: [],
 
-  specs: ['../features/trello.feature'],
+  specs: ['../features/features-list/trello.feature',
+    '../features/features-list/boards.feature'
+  ],
 
   exclude: [],
   maxInstances: 1,
