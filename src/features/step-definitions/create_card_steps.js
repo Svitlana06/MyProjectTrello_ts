@@ -23,7 +23,7 @@ Given('I dont know', async () => {
   await boardPage.boardComponent.check('existedBoard').click();
 });
 
-When('I add a new list', async () => {
+When('O my god', async () => {
   await boardPage.boardComponent.createBtn('list').click();
   await boardPage.boardComponent.input('list').setValue(valuesForFields.newListName);
   await boardPage.boardComponent.addBtn('list').click();
