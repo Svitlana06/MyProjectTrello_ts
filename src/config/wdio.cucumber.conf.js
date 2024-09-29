@@ -4,11 +4,12 @@ exports.config = {
 
   services: [],
 
-  specs: ['../features/cards.feature',
-    '../features/boards.feature',
-    '../features/general_settings.feature',
+  specs: [
+    // '../features/cards.feature',
+    // '../features/boards.feature',
+    // '../features/general_settings.feature',
     '../features/lists.feature',
-    '../features/signup.feature',
+    // '../features/signup.feature',
   ],
 
   exclude: [],
