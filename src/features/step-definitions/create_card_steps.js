@@ -5,7 +5,7 @@ const { BoardPage } = require('../../po/pages/imports.js');
 
 const boardPage = new BoardPage();
 
-Given('I am on a Trello board with existing lists', async () => {
+Given('I am on a Trello board with ', async () => {
   await boardPage.boardComponent.check('existedBoard').click();
 });
 
