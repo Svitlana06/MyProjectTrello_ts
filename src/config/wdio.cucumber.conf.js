@@ -8,7 +8,7 @@ exports.config = {
     // '../features/cards.feature',
     // '../features/boards.feature',
     // '../features/general_settings.feature',
-    '../features/lists.feature',
+    '../features/trello.feature',
     // '../features/signup.feature',
   ],
 
