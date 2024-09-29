@@ -15,7 +15,7 @@ When('I add a new card', async () => {
   await boardPage.boardComponent.addBtn('card').click();
 });
 
-Then('a new card should be added to the list', async () => {
+Then('a new card should be added', async () => {
   expect(await boardPage.boardComponent.check('card').isDisplayed()).to.be.true;
 });
 
@@ -29,6 +29,6 @@ When('I add a new list', async () => {
   await boardPage.boardComponent.addBtn('list').click();
 });
 
-Then('a new list should be added to the board', async () => {
+Then('a new list should be added', async () => {
   expect(await boardPage.boardComponent.check('list').isDisplayed()).to.be.true;
 });
