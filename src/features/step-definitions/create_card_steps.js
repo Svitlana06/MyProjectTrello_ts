@@ -19,7 +19,7 @@ Then('a new card should be added to the list', async () => {
   expect(await boardPage.boardComponent.check('card').isDisplayed()).to.be.true;
 });
 
-Given('I am on a Trello board', async () => {
+Given('I dont know', async () => {
   await boardPage.boardComponent.check('existedBoard').click();
 });
 
