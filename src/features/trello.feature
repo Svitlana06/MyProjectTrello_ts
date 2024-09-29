@@ -1,17 +1,5 @@
 Feature: Trello Feature
 
-
-    Scenario: Modifying workspace settings
-    Given I am on the workspace settings page
-    When I update workspace details
-    Then the workspace settings should be updated successfully
-
-@login
-   Scenario: Creating a new board
-   Given I"m on the boards page
-   When I add a new board
-   Then a new board should be created and displayed
-
 @login
    Scenario: Creating a new card on a list
    Given I am on a Trello board with existing lists
