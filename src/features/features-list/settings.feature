@@ -6,7 +6,7 @@ Feature: Card Feature
   When I update workspace details
   Then the workspace settings should be updated successfully
 
-@login
+
   Scenario: Editing the user profile
   Given I am on the profile settings page
   When I update my profile information
