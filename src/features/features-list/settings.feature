@@ -1,5 +1,10 @@
 Feature: Card Feature
 
+   Scenario: Filter cards
+   Given I am on a Trello board with multiple cards
+   When I apply a filter for specific criteria
+   Then only cards matching the criteria should be displayed
+
 @login
    Scenario: Filter cards
    Given I am on a Trello board with multiple cards
