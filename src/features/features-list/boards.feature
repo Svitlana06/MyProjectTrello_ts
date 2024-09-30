@@ -14,13 +14,13 @@ Feature: Boards Feature
 
 @login
    Scenario: Creating a new list
-   Given I am on the boards page
+   Given I am on the Trello board
    When I add a new list
    Then a new list should be added to the board
 
 @login
    Scenario: Filter cards
-   Given I am on the boards page
+   Given I am on a Trello board with multiple cards
    When I apply a filter for specific criteria
    Then only cards matching the criteria should be displayed
 

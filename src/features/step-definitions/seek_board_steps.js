@@ -6,7 +6,7 @@ const { SearchPage, BasePage } = require('../../po/pages/imports.js');
 const basePage = new BasePage();
 const searchPage = new SearchPage();
 
-Given('I am on the boards page yes', async () => {
+Given('I am on the boards page', async () => {
   expect((await browser.getUrl()).includes(url.boards));
 });
 
