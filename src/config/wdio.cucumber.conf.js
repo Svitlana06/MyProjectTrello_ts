@@ -7,7 +7,7 @@ exports.config = {
   specs: [
     '../features/features-list/cards.feature',
     '../features/features-list/boards.feature',
-    '../features/features-list/general_settings.feature',
+    '../features/features-list/settings.feature',
     '../features/features-list/signup.feature',
   ],
 
