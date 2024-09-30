@@ -5,7 +5,7 @@ exports.config = {
   services: [],
 
   specs: [
-    '../features/features-list/settings.feature',
+    '../features/settings.feature',
     '../features/features-list/cards.feature',
     '../features/features-list/boards.feature',
     '../features/features-list/signup.feature',
