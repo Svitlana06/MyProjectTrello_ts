@@ -2,7 +2,7 @@ Feature: Boards Feature
 
 @login
    Scenario: Creating a new board
-   Given I"m on the boards page
+   Given I am on the boards page
    When I add a new board
    Then a new board should be created and displayed
 
@@ -14,13 +14,13 @@ Feature: Boards Feature
 
 @login
    Scenario: Creating a new list
-   Given I am on a Trello board with existing lists
+   Given I am on the boards page
    When I add a new list
    Then a new list should be added to the board
 
 @login
    Scenario: Filter cards
-   Given I am on a Trello board with multiple cards
+   Given I am on the boards page
    When I apply a filter for specific criteria
    Then only cards matching the criteria should be displayed
 
