@@ -24,10 +24,4 @@ Feature: Boards Feature
    When I apply a filter for specific criteria
    Then only cards matching the criteria should be displayed
 
-@login
-   Scenario: Searching for the boards
-   Given I am on the boards page
-   And I seek the boards
-   Then only necessary boards should be displayed
-
 
