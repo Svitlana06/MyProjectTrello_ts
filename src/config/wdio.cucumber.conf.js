@@ -5,11 +5,10 @@ exports.config = {
   services: [],
 
   specs: [
-    // '../features/cards.feature',
-    // '../features/boards.feature',
-    // '../features/general_settings.feature',
-    '../features/trello.feature',
-    // '../features/signup.feature',
+    '../features/features-list/cards.feature',
+    '../features/features-list/boards.feature',
+    '../features/features-list/general_settings.feature',
+    '../features/features-list/signup.feature',
   ],
 
   exclude: [],
