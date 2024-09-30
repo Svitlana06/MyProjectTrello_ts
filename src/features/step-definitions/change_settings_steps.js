@@ -1,12 +1,13 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const should = require('chai').should();
-const { valuesForFields } = require('../../tests/settings.js');
+const { valuesForFields, url } = require('../../tests/settings.js');
 const { BasePage, AccountPage } = require('../../po/pages/imports.js');
 
 const basePage = new BasePage();
 const accountPage = new AccountPage();
 
 Given('I am on the workspace settings page', async () => {
+  expect((await browser.getUrl()).includes(url.boards));
   await basePage.headerComponent.openAccount.click();
   await basePage.accountWindowComponent.settingsBtn('account').click();
 });

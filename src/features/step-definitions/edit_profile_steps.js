@@ -1,12 +1,13 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const assert = require('chai').assert;
-const { valuesForFields } = require('../../tests/settings');
+const { valuesForFields, url } = require('../../tests/settings');
 const { BasePage, AccountPage } = require('../../po/pages/imports.js');
 
 const basePage = new BasePage();
 const accountPage = new AccountPage();
 
 Given('I am on the profile settings page', async () => {
+  expect((await browser.getUrl()).includes(url.boards));
   await basePage.headerComponent.openAccount.click();
   await basePage.accountWindowComponent.settingsBtn('profile').click();
 });

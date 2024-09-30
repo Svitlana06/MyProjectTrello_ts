@@ -6,6 +6,7 @@ const { BoardPage } = require('../../po/pages/imports.js');
 const boardPage = new BoardPage();
 
 Given('I am on a Trello board with multiple cards', async () => {
+  expect((await browser.getUrl()).includes(url.boards));
   await boardPage.boardComponent.check('existedBoard').click();
 });
 
