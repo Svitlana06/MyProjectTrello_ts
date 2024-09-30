@@ -1,6 +1,6 @@
 Feature: Card Feature
 
-
+@login
    Scenario: Filter cards
    Given I am on a Trello board with multiple cards
    When I apply a filter for specific criteria
