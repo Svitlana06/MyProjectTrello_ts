@@ -20,5 +20,5 @@ Feature: Card Feature
 @login
   Scenario: Editing the user profile
   Given I am on the profile settings page
-  And I update my profile information
+  When I update my profile information
   Then my profile should reflect the updates
