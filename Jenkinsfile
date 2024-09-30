@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'selenium/standalone-chrome'
-            args '-p 5900:5900 -v C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Cucumber Tests/:C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Cucumber Tests/'
+            args '-p 5900:5900 -v C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\CucumberTests:C:\\CucumberTests'
         }
     }
 
