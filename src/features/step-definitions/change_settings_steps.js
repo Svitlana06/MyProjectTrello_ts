@@ -10,6 +10,7 @@ Given('I am on the workspace settings page', async () => {
   expect((await browser.getUrl()).includes(url.boards));
   this.timeout(15000);
   await basePage.headerComponent.openAccount.click();
+  this.timeout(15000);
   await basePage.accountWindowComponent.settingsBtn('account').click();
   this.timeout(15000);
 });
