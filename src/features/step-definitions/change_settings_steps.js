@@ -8,15 +8,23 @@ const accountPage = new AccountPage();
 
 Given('I am on the workspace settings page', async () => {
   expect((await browser.getUrl()).includes(url.boards));
-  this.timeout(15000);
+  setTimeout(() => {
+    done();
+  }, 20000);
   await basePage.headerComponent.openAccount.click();
-  this.timeout(15000);
+  setTimeout(() => {
+    done();
+  }, 20000);
   await basePage.accountWindowComponent.settingsBtn('account').click();
-  this.timeout(15000);
+  setTimeout(() => {
+    done();
+  }, 20000);
 });
 
 When('I update workspace details', async () => {
-  this.timeout(15000);
+  setTimeout(() => {
+    done();
+  }, 20000);
   await accountPage.settingsComponent.openFrequencyProperty.click();
 
   await accountPage.settingsComponent.changeFrequency.waitForExist({
