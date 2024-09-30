@@ -26,11 +26,20 @@ When('I update workspace details', async () => {
     done();
   }, 20000);
   await accountPage.settingsComponent.openFrequencyProperty.click();
+  setTimeout(() => {
+    done();
+  }, 20000);
 
   await accountPage.settingsComponent.changeFrequency.waitForExist({
     timeout: 10000,
   });
+  setTimeout(() => {
+    done();
+  }, 20000);
   await accountPage.settingsComponent.changeFrequency.click();
+  setTimeout(() => {
+    done();
+  }, 20000);
 });
 
 Then('the workspace settings should be updated successfully', async () => {
