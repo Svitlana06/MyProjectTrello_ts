@@ -16,6 +16,16 @@ Given('I am on the workspace settings page', async () => {
     timeout: 80000,
   });
   await basePage.accountWindowComponent.settingsBtn('account').click();
+
+  await browser.waitUntil(
+    async () => {
+      return (await browser.getUrl()).includes("account");
+    },
+    {
+      timeout: 15000,
+      
+    }
+  );
 });
 
 When('I update workspace details', async () => {
