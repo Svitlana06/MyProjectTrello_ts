@@ -8,6 +8,7 @@ exports.config = {
     '../features/features-list/settings.feature',
     '../features/features-list/boards.feature',
     '../features/features-list/signup.feature',
+    '../features/features-list/search.feature',
   ],
 
   exclude: [],
