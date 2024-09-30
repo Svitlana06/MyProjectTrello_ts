@@ -13,6 +13,13 @@ Given('I am on the workspace settings page', async () => {
 });
 
 When('I update workspace details', async () => {
+  await browser.waitUntil(async () => {
+    return await browser.$("//label[text()='Частота']/following-sibling::*").isDisplayed();
+  }, {
+    timeout: 55000, // Збільшіть таймаут
+    timeoutMsg: 'Елемент не з\'явився протягом 15 секунд'
+  });
+  
   await accountPage.settingsComponent.openFrequencyProperty.waitForExist({
     timeout: 10000,
   });
