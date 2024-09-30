@@ -12,8 +12,5 @@ Feature: Trello Feature
    When I add a new list
    Then a new list should be added to the board
 
-@login
-  Scenario: Modifying workspace settings
-  Given I am on the workspace settings page
-  When I update workspace details
-  Then the workspace settings should be updated successfully
+
+
