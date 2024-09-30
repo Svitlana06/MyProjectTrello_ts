@@ -1,4 +1,4 @@
-Feature: General Settings Feature
+Feature: Settings Feature
 
 @login
    Scenario: Filter cards
