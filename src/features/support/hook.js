@@ -34,9 +34,6 @@ async function login() {
 
 Before(async function (scenario) {
   await browser.deleteCookies();
-  await browser.execute(() => {
-    localStorage.clear();
-  });
   if (scenario.pickle.tags.some((tag) => tag.name === '@login')) {
     try {
       await login();
