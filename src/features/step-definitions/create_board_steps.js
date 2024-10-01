@@ -1,7 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const should = require('chai').should();
 const { expect } = require('chai');
-const { valuesForFields, url } = require('../../tests/settings');
+const { valuesForFields, url } = require('../../data/data.js');
 const { BasePage, BoardPage } = require('../../po/pages/imports.js');
 
 const basePage = new BasePage();

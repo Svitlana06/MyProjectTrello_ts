@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
-const { url, valuesForFields } = require('./settings');
 const { pages } = require('../po');
-const signIn = require('./sign_in');
+const { valuesForFields, url } = require('../data/data');
+const signIn = require('../settings/sign_in');
 
 describe('Searching for an existing board', () => {
   before(async () => {

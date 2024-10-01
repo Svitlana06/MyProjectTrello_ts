@@ -1,7 +1,7 @@
 const should = require('chai').should();
-const { url, valuesForFields } = require('./settings');
 const { pages } = require('../po');
-const signIn = require('./sign_in');
+const { valuesForFields, url } = require('../data/data');
+const signIn = require('../settings/sign_in');
 
 describe('Creating a new board', () => {
   before(async () => {

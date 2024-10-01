@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const assert = require('chai').assert;
-const { valuesForFields, url } = require('../../tests/settings');
+const { valuesForFields, url } = require('../../data/data.js');
 const { BasePage, AccountPage } = require('../../po/pages/imports.js');
 
 const basePage = new BasePage();

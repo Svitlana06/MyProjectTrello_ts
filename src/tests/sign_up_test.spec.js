@@ -1,4 +1,4 @@
-const { inputData, url, valuesForFields } = require('./settings');
+const { inputData, url, valuesForFields } = require('../data/data');
 const { pages } = require('../po');
 
 describe.skip('Sign up for a new Trello account', () => {

@@ -1,6 +1,6 @@
 const should = require('chai').should();
-const { valuesForFields } = require('./settings');
-const signIn = require('./sign_in');
+const { valuesForFields } = require('../data/data');
+const signIn = require('../settings/sign_in');
 const { pages } = require('../po');
 
 describe('Modifying workspace setting', () => {

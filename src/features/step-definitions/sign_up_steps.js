@@ -1,16 +1,17 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('chai');
 const { pages } = require('../../po');
-const { valuesForFields, inputData, url } = require('../../tests/settings');
-const { BasePage, SetupPage, RegistrationPage } = require('../../po/pages/imports.js');
+const { valuesForFields, inputData, url }  = require('../../data/data.js');
+const { BasePage, SetupPage, RegistrationPage, HomePage } = require('../../po/pages/imports.js');
 
 const basePage = new BasePage();
 const setupPage = new SetupPage();
 const registrationPage = new RegistrationPage();
+const homePage = new HomePage();
 
 Given('the Trello sign up page is displayed', async () => {
-  await pages('homePage').open();
-  await pages('homePage').mainComponent.signUpBtn.click();
+  await homePage.open();
+  await homePage.mainComponent.signUpBtn.click();
   await browser.waitUntil(
     async () => {
       return (await browser.getUrl()).includes(url.signup);

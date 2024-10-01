@@ -1,5 +1,5 @@
 const BaseComponent = require('../common.components/base.component');
-const { valuesForFields } = require('../../../tests/settings');
+const { valuesForFields } = require('../../../data/data');
 
 class ProfileVisabilityComponent extends BaseComponent {
   constructor() {

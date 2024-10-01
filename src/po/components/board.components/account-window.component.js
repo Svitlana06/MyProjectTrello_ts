@@ -1,5 +1,5 @@
 const BaseComponent = require('../common.components/base.component');
-const { inputData } = require('../../../tests/settings');
+const { inputData } = require('../../../data/data');
 
 class AccountWindowComponent extends BaseComponent {
   constructor() {

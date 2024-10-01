@@ -1,5 +1,5 @@
 const { Before, After } = require('@cucumber/cucumber');
-const { inputData, url } = require('../../tests/settings');
+const { inputData, url } = require('../../data/data.js');
 const { HomePage, RegistrationPage } = require('../../po/pages/imports.js');
 
 async function login() {
