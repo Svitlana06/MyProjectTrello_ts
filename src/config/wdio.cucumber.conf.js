@@ -30,9 +30,9 @@ exports.config = {
       'src/features/step-definitions/base_page_steps.js',
       'src/features/step-definitions/board_page_steps.js',
       'src/features/step-definitions/search_page_steps.js',
-      'src/features/step-definitions/signup_page_steps.js',
+      'src/features/step-definitions/setup_page_steps.js',
       'src/features/step-definitions/registration_page_steps.js',
-      'src/features/step-definitions/home_page__steps.js',
+      'src/features/step-definitions/home_page_steps.js',
     ],
 
     backtrace: false,
