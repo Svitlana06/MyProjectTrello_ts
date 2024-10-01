@@ -36,6 +36,7 @@ const registrationPage = new RegistrationPage();
 
 Before(async function (scenario) {
   await browser.deleteCookies();
+  await browser.reloadSession();
   if (scenario.pickle.tags.some((tag) => tag.name === '@login')) {
     try {
       await login();
@@ -47,6 +48,7 @@ Before(async function (scenario) {
 
 After(async function () {
   await browser.deleteCookies();
+  await resetOtherStates();
 });
 
 module.exports = { After, Before };
