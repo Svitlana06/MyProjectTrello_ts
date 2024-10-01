@@ -20,7 +20,7 @@ exports.config = {
       'goog:chromeOptions': {
         
         args: [
-          --start-maximized
+          '--start-maximized'
         // '--headless', '--disable-gpu', '--window-size=1920,1080'
       ],
       },
