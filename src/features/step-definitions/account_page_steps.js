@@ -1,12 +1,10 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
+const { When, Then } = require('@cucumber/cucumber');
 const should = require('chai').should();
 const assert = require('chai').assert;
-const { valuesForFields, url } = require('../../data/data.js');
+const { valuesForFields } = require('../../data/data.js');
 const { AccountPage } = require('../../po/pages/imports.js');
 
 const accountPage = new AccountPage();
-
-
 
 When('I update workspace details', async () => {
   await accountPage.settingsComponent.openFrequencyProperty.click();
@@ -15,12 +13,6 @@ When('I update workspace details', async () => {
     timeout: 10000,
   });
   await accountPage.settingsComponent.changeFrequency.click();
-});
-
-Then('the workspace settings should be updated successfully', async () => {
-  (await accountPage.settingsComponent.checkFrequency.getText()).should.equal(
-    valuesForFields.checkedFrequently
-  );
 });
 
 When('I update my profile information', async () => {
@@ -34,6 +26,13 @@ When('I update my profile information', async () => {
     { timeout: 10000 }
   );
 });
+
+Then('the workspace settings should be updated successfully', async () => {
+  (await accountPage.settingsComponent.checkFrequency.getText()).should.equal(
+    valuesForFields.checkedFrequently
+  );
+});
+
 
 Then('my profile should reflect the updates', async () => {
   assert.strictEqual(

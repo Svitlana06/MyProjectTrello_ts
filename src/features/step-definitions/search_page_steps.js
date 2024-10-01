@@ -1,6 +1,6 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
+const { Then } = require('@cucumber/cucumber');
 const assert = require('chai').assert;
-const { valuesForFields, url } = require('../../data/data.js');
+const { valuesForFields } = require('../../data/data.js');
 const { SearchPage} = require('../../po/pages/imports.js');
 
 const searchPage = new SearchPage();

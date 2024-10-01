@@ -31,9 +31,8 @@ exports.config = {
       'src/features/step-definitions/board_page_steps.js',
       'src/features/step-definitions/search_page_steps.js',
       'src/features/step-definitions/signup_page_steps.js',
-      // 'src/features/step-definitions/filter_cards_steps.js',
-      // 'src/features/step-definitions/seek_board_steps.js',
-      // 'src/features/step-definitions/sign_up_steps.js',
+      'src/features/step-definitions/registration_page_steps.js',
+      'src/features/step-definitions/home_page__steps.js',
     ],
 
     backtrace: false,

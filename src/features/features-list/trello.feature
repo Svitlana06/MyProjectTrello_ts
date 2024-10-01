@@ -8,13 +8,13 @@ Feature: Trello Feature
 
 @login_on_the_site
    Scenario: Creating a new board
-   Given I"m on the boards page
+   Given I am on the boards page
    When I add a new board
    Then a new board should be created and displayed
 
 @login_on_the_site
    Scenario: Creating a new card on a list
-   Given I am on a Trello board with existing lists
+   Given I am on the existing board
    When I add a new card
    Then a new card should be added to the list
 
@@ -32,7 +32,7 @@ Feature: Trello Feature
 
 @login_on_the_site
    Scenario: Filter cards
-   Given I am on a Trello board with multiple cards
+   Given I am on the existing board
    When I apply a filter for specific criteria
    Then only cards matching the criteria should be displayed
 

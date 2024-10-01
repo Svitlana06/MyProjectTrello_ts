@@ -6,10 +6,16 @@ const { BasePage } = require('../../po/pages/imports.js');
 
 const basePage = new BasePage();
 
-Given('I am on the settings page', async () => {
+Given('I am on the workspace settings page', async () => {
   expect((await browser.getUrl()).includes(url.boards));
   await basePage.headerComponent.openAccount.click();
   await basePage.accountWindowComponent.settingsBtn('account').click();
+});
+
+Given('I am on the profile settings page', async () => {
+  expect((await browser.getUrl()).includes(url.boards));
+  await basePage.headerComponent.openAccount.click();
+  await basePage.accountWindowComponent.settingsBtn('profile').click();
 });
 
 When('I add a new board', async () => {
@@ -25,16 +31,8 @@ When('I add a new board', async () => {
     },
     {
       timeout: 13000,
-      
     }
-  );
-  
-});
-
-Given('I am on the profile settings page', async () => {
-  expect((await browser.getUrl()).includes(url.boards));
-  await basePage.headerComponent.openAccount.click();
-  await basePage.accountWindowComponent.settingsBtn('profile').click();
+  ); 
 });
 
 When('I seek the boards', async () => {
@@ -51,4 +49,9 @@ When('I seek the boards', async () => {
       timeout: 10000,
     }
   );
+});
+
+Then('a new account should be created successfully', async () => {
+  await basePage.headerComponent.openAccount.click();
+  await expect(basePage.accountWindowComponent.checkUser('newUser')).isDisplayed();
 });
