@@ -2,7 +2,7 @@ Feature: Trello Feature
 
 @login_on_the_site
    Scenario: Creating a new board
-   Given I am on the boards page
+   Given I"m on the boards page
    When I add a new board
    Then a new board should be created and displayed
 
