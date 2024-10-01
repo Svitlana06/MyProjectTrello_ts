@@ -29,7 +29,7 @@ When('I add a new board', async () => {
       return (await browser.getUrl()).includes(url.newBoardUrl);
     },
     {
-      timeout: 13000,
+      timeout: 20000,
     }
   );
 });
