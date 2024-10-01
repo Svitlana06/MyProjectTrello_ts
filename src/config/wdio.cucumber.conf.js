@@ -26,14 +26,14 @@ exports.config = {
   cucumberOpts: {
     require: [
       'src/features/support/hook.js',
-      'src/features/step-definitions/change_settings_steps.js',
-      'src/features/step-definitions/create_board_steps.js',
-      'src/features/step-definitions/create_card_steps.js',
-      'src/features/step-definitions/create_list_steps.js',
-      'src/features/step-definitions/edit_profile_steps.js',
-      'src/features/step-definitions/filter_cards_steps.js',
-      'src/features/step-definitions/seek_board_steps.js',
-      'src/features/step-definitions/sign_up_steps.js',
+      'src/features/step-definitions/account_page_steps.js',
+      'src/features/step-definitions/base_page_steps.js',
+      'src/features/step-definitions/board_page_steps.js',
+      'src/features/step-definitions/search_page_steps.js',
+      'src/features/step-definitions/signup_page_steps.js',
+      // 'src/features/step-definitions/filter_cards_steps.js',
+      // 'src/features/step-definitions/seek_board_steps.js',
+      // 'src/features/step-definitions/sign_up_steps.js',
     ],
 
     backtrace: false,

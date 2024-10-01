@@ -1,6 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('chai');
-const { pages } = require('../../po');
+const { pages } = require('../../po/index.js');
 const { valuesForFields, inputData, url }  = require('../../data/data.js');
 const { BasePage, SetupPage, RegistrationPage, HomePage } = require('../../po/pages/imports.js');
 
