@@ -1,47 +1,16 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const assert = require('chai').assert;
-const { valuesForFields, url, inputData } = require('../../tests/settings');
-const { SearchPage, BasePage, HomePage, RegistrationPage } = require('../../po/pages/imports.js');
+const { valuesForFields, url } = require('../../tests/settings');
+const { SearchPage, BasePage } = require('../../po/pages/imports.js');
 
 const basePage = new BasePage();
 const searchPage = new SearchPage();
-const homePage = new HomePage();
-const registrationPage = new RegistrationPage();
 
 Given('I am on the boards page', async () => {
-  await homePage.open();
-  await homePage.headerHomeComponent.signInBtn.click();
-
-  await browser.waitUntil(
-    async () => (await browser.getUrl()).includes(url.login),
-    { timeout: 10000 }
-  );
-
-  await registrationPage
-    .registrationComponent.input('username')
-    .setValue(inputData.emailLogIn);
-  await registrationPage.registrationComponent.submitBtn('signIn').click();
-
-  await browser.waitUntil(
-    async () => await registrationPage.registrationComponent.input('password').isDisplayed(),
-    { timeout: 10000 }
-  );
-
-  await registrationPage
-    .registrationComponent.input('password')
-    .setValue(inputData.password);
-  await registrationPage.registrationComponent.submitBtn('signIn').click();
-
-  await browser.waitUntil(
-    async () => (await browser.getUrl()).includes(url.boards),
-    { timeout: 15000 }
-  );
   expect((await browser.getUrl()).includes(url.boards));
 });
 
 When('I seek the boards', async () => {
-  const searchInput = await $('//input[@placeholder="Пошук"]');
-await searchInput.waitForDisplayed({ timeout: 25000 }); 
   await basePage.headerComponent.setSearch.setValue(valuesForFields.searchingBoard);
   await basePage.searchWindowComponent.openResultsBtn.waitForDisplayed({
     timeout: 12000,
