@@ -9,7 +9,7 @@
     "glob": "^11.0.0"
   },
   "scripts": {
-    "test:cucumber": "wdio run src/config/wdio.cucumber.conf.js --tags '@login'",
+    "test:cucumber": "wdio run src/config/wdio.cucumber.conf.js --tags '@login_on_the_site'",
     "test:mocha": "wdio run src/config/wdio.mocha.conf.js",
     "lint": "eslint .",
     "format": "prettier --write ."
