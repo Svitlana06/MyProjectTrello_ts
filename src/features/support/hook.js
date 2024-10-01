@@ -48,7 +48,7 @@ Before(async function (scenario) {
 
 After(async function () {
   await browser.deleteCookies();
-  await resetOtherStates();
+  await browser.reloadSession(); 
 });
 
 module.exports = { After, Before };
