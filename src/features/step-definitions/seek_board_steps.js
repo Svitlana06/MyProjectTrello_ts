@@ -5,8 +5,37 @@ const { SearchPage, BasePage } = require('../../po/pages/imports.js');
 
 const basePage = new BasePage();
 const searchPage = new SearchPage();
+const homePage = new HomePage();
+const registrationPage = new RegistrationPage();
 
 Given('I am on the boards page', async () => {
+  await homePage.open();
+  await homePage.headerHomeComponent.signInBtn.click();
+
+  await browser.waitUntil(
+    async () => (await browser.getUrl()).includes(url.login),
+    { timeout: 10000 }
+  );
+
+  await registrationPage
+    .registrationComponent.input('username')
+    .setValue(inputData.emailLogIn);
+  await registrationPage.registrationComponent.submitBtn('signIn').click();
+
+  await browser.waitUntil(
+    async () => await registrationPage.registrationComponent.input('password').isDisplayed(),
+    { timeout: 10000 }
+  );
+
+  await registrationPage
+    .registrationComponent.input('password')
+    .setValue(inputData.password);
+  await registrationPage.registrationComponent.submitBtn('signIn').click();
+
+  await browser.waitUntil(
+    async () => (await browser.getUrl()).includes(url.boards),
+    { timeout: 15000 }
+  );
   expect((await browser.getUrl()).includes(url.boards));
 });
 
