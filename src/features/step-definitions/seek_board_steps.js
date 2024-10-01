@@ -1,7 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const assert = require('chai').assert;
-const { valuesForFields, url } = require('../../tests/settings');
-const { SearchPage, BasePage } = require('../../po/pages/imports.js');
+const { valuesForFields, url, inputData } = require('../../tests/settings');
+const { SearchPage, BasePage, HomePage, RegistrationPage } = require('../../po/pages/imports.js');
 
 const basePage = new BasePage();
 const searchPage = new SearchPage();
