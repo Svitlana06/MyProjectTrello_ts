@@ -40,6 +40,8 @@ Given('I am on the boards page', async () => {
 });
 
 When('I seek the boards', async () => {
+  const searchInput = await $('//input[@placeholder="Пошук"]');
+await searchInput.waitForDisplayed({ timeout: 25000 }); 
   await basePage.headerComponent.setSearch.setValue(valuesForFields.searchingBoard);
   await basePage.searchWindowComponent.openResultsBtn.waitForDisplayed({
     timeout: 12000,

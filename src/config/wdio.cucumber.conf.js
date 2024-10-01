@@ -18,7 +18,11 @@ exports.config = {
       maxInstances: 1,
       browserName: 'chrome',
       'goog:chromeOptions': {
-        // args: ['--headless', '--disable-gpu', '--window-size=1920,1080'],
+        
+        args: [
+          --start-maximized
+        // '--headless', '--disable-gpu', '--window-size=1920,1080'
+      ],
       },
     },
   ],
