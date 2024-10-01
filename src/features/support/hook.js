@@ -35,9 +35,7 @@ const registrationPage = new RegistrationPage();
 }
 
 Before(async function (scenario) {
-  await browser.deleteCookies();
-  await browser.reloadSession();
-  if (scenario.pickle.tags.some((tag) => tag.name === '@login')) {
+  if (scenario.pickle.tags.some((tag) => tag.name === '@login_on_the_site')) {
     try {
       await login();
     } catch (error) {
@@ -48,7 +46,6 @@ Before(async function (scenario) {
 
 After(async function () {
   await browser.deleteCookies();
-  await browser.reloadSession(); 
 });
 
 module.exports = { After, Before };
