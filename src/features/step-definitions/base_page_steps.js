@@ -1,8 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('chai');
-const { valuesForFields , url} = require('../../data/data.js');
+const { valuesForFields, url } = require('../../data/data.js');
 const { BasePage } = require('../../po/pages/imports.js');
-
 
 const basePage = new BasePage();
 
@@ -32,7 +31,7 @@ When('I add a new board', async () => {
     {
       timeout: 13000,
     }
-  ); 
+  );
 });
 
 When('I seek the boards', async () => {

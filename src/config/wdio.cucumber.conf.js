@@ -4,9 +4,7 @@ exports.config = {
 
   services: [],
 
-  specs: [
-    '../features/features-list/trello.feature',
-  ],
+  specs: ['../features/features-list/trello.feature'],
 
   exclude: [],
   maxInstances: 1,
@@ -20,8 +18,7 @@ exports.config = {
     },
   ],
 
-  
-  reporters: ['spec'], 
+  reporters: ['spec'],
 
   cucumberOpts: {
     require: [

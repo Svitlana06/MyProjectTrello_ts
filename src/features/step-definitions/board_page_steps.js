@@ -58,4 +58,3 @@ Then('a new board should be created and displayed', async () => {
 Then('only cards matching the criteria should be displayed', async () => {
   assert.include(await browser.getUrl(), url.filterOverdue);
 });
-

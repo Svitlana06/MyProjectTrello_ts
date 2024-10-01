@@ -1,7 +1,7 @@
 const { Then } = require('@cucumber/cucumber');
 const assert = require('chai').assert;
 const { valuesForFields } = require('../../data/data.js');
-const { SearchPage} = require('../../po/pages/imports.js');
+const { SearchPage } = require('../../po/pages/imports.js');
 
 const searchPage = new SearchPage();
 

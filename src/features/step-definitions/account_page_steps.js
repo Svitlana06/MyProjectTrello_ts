@@ -33,7 +33,6 @@ Then('the workspace settings should be updated successfully', async () => {
   );
 });
 
-
 Then('my profile should reflect the updates', async () => {
   assert.strictEqual(
     await accountPage.profileVisabilityComponent.checkNewUsername.getText(),

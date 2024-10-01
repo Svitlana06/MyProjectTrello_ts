@@ -20,7 +20,7 @@ Feature: Trello Feature
 
 @login_on_the_site
    Scenario: Creating a new list
-   Given I am on a Trello board
+   Given I am on the existing board
    When I add a new list
    Then a new list should be added to the board
 
