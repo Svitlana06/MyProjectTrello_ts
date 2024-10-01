@@ -5,10 +5,7 @@ exports.config = {
   services: [],
 
   specs: [
-    '../features/features-list/settings.feature',
-    '../features/features-list/boards.feature',
-    '../features/features-list/signup.feature',
-    '../features/features-list/search.feature',
+    '../features/features-list/trello.feature',
   ],
 
   exclude: [],
@@ -41,7 +38,7 @@ exports.config = {
 
     backtrace: false,
     requireModule: [],
-    tags: ['@login'],
+    tags: ['@login_on_the_site'],
     timeout: 60000,
     ignoreUndefinedDefinitions: false,
   },
