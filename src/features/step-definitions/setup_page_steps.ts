@@ -1,6 +1,6 @@
 import { When } from '@cucumber/cucumber';
 import { valuesForFields } from '../../data/data.ts';
-import { SetupPage } from '../../po/pages/imports.ts';
+import { SetupPage } from '../../po/pages/index.ts';
 
 let setupPage: SetupPage;
 setupPage = new SetupPage();

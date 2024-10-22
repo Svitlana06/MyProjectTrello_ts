@@ -2,7 +2,7 @@ import { should } from 'chai';
 should(); 
 import { url, valuesForFields } from '../data/data.ts';
 import signIn from '../settings/sign_in.ts';
-import { BasePage, BoardPage } from '../po/pages/imports.ts';
+import { BasePage, BoardPage } from '../po/pages/index.ts';
 
 describe('Creating a new board', () => {
   before(async () => {

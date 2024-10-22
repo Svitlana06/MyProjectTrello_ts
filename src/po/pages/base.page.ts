@@ -1,6 +1,15 @@
 import { HeaderComponent, BoardWindowComponent, AccountWindowComponent, SearchWindowComponent } from '../components/index.ts';
 
-class BasePage { // додати інтерфейс
+interface IBasePage {
+  url: string;
+  open(): Promise<void>;
+  headerComponent: HeaderComponent;
+  boardWindowComponent: BoardWindowComponent;
+  accountWindowComponent: AccountWindowComponent;
+  searchWindowComponent: SearchWindowComponent;
+}
+
+class BasePage implements IBasePage {
   url: string;
   headerComponent: HeaderComponent;
   boardWindowComponent: BoardWindowComponent;
@@ -15,8 +24,8 @@ class BasePage { // додати інтерфейс
     this.searchWindowComponent = new SearchWindowComponent();
   }
 
-  open() {
-    return browser.url(this.url);
+  async open(): Promise<void> {
+    await browser.url(this.url);
   }
 }
 

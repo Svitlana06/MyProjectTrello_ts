@@ -3,7 +3,7 @@ import { should } from 'chai';
 should(); 
 import { expect, assert } from 'chai';
 import { valuesForFields, url } from '../../data/data.ts';
-import { BoardPage } from '../../po/pages/imports.ts';
+import { BoardPage } from '../../po/pages/index.ts';
 
 let boardPage: BoardPage;
 boardPage = new BoardPage();

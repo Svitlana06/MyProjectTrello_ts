@@ -1,6 +1,6 @@
 import { When } from '@cucumber/cucumber';
 import { inputData, url } from '../../data/data.ts';
-import { RegistrationPage } from '../../po/pages/imports.ts';
+import { RegistrationPage } from '../../po/pages/index.ts';
 
 let registrationPage: RegistrationPage;
 registrationPage = new RegistrationPage();

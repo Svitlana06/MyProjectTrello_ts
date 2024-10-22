@@ -1,6 +1,6 @@
 import { Before, After } from '@cucumber/cucumber';
 import { inputData, url } from '../../data/data.ts';
-import { HomePage, RegistrationPage } from '../../po/pages/imports.ts';
+import { HomePage, RegistrationPage } from '../../po/pages/index.ts';
 
 async function login() {
   let homePage : HomePage; // подивитись над логікою папки feature

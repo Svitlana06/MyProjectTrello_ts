@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from 'chai';
 import { valuesForFields, url } from '../../data/data.ts';
-import  {BasePage} from '../../po/pages/imports.ts';
+import  {BasePage} from '../../po/pages/index.ts';
 
 let basePage: BasePage;
 basePage = new BasePage('https://trello.com');

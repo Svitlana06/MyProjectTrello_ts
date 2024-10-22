@@ -1,34 +1,47 @@
 import BaseComponent from '../common.components/base.component.ts';
 
 class SetupComponent extends BaseComponent {
-  constructor() {
+  private static instance: SetupComponent | null = null;
+
+  // Винесені локатори
+  private readonly initialSettingsSelectors: { [key: string]: string } = {
+    goal: '//p[contains(text(), "Упорядкування ідей")]',
+    board: '#boardName',
+    listFirst: '#list1',
+    listSecond: '#list2',
+    listThird: '#list3',
+    cardFirst: '#card1',
+    cardSecond: '#card2',
+  };
+
+  private readonly submitBtnSelectors: { [key: string]: string } = {
+    continue: '//button[text()="Продовжити"]',
+    next: '//button[text()="Далі"]',
+    skip: '//button[text()="Пропустити"]',
+  };
+
+  private constructor() {
     super('.nvfJSf_0WwLXsm');
   }
 
-  initialSettings(name:'goal' | 'board' | 'listFirst' | 'listSecond' | 'listThird' | 'cardFirst' | 'cardSecond') {
-    const selectors: {[key:string]: string}={
-      goal: '//p[contains(text(), "Упорядкування ідей")]',
-      board: '#boardName',
-      listFirst: '#list1',
-      listSecond: '#list2',
-      listThird: '#list3',
-      cardFirst: '#card1',
-      cardSecond: '#card2',
-    };
-    return this.rootEL.$(selectors[name]);
+  public static getInstance(): SetupComponent {
+    if (this.instance === null) {
+      this.instance = new SetupComponent();
+    }
+    return this.instance;
   }
-  submitBtn(name: 'continue' | 'next' | 'skip') {
-    const selectors: {[key:string]: string}= {
-      continue: '//button[text()="Продовжити"]',
-      next: '//button[text()="Далі"]',
-      skip: '//button[text()="Пропустити"]',
-    };
 
-    return this.rootEL.$(selectors[name]);
+  initialSettings(name: 'goal' | 'board' | 'listFirst' | 'listSecond' | 'listThird' | 'cardFirst' | 'cardSecond') {
+    return this.rootEL.$(this.initialSettingsSelectors[name]);
+  }
+
+  submitBtn(name: 'continue' | 'next' | 'skip') {
+    return this.rootEL.$(this.submitBtnSelectors[name]);
   }
 
   get premiumVersionOffer() {
     return $('//span[text()="Спеціальна пропозиція!"]');
   }
 }
+
 export default SetupComponent;

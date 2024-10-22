@@ -1,5 +1,5 @@
 import { inputData, url } from '../data/data.ts';
-import { HomePage, RegistrationPage } from '../po/pages/imports.ts';
+import { HomePage, RegistrationPage } from '../po/pages/index.ts';
 
 async function signIn() { // в ліби в хелпер функції; ще подумати куди винести краще - може в base page
     try {

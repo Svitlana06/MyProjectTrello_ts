@@ -6,20 +6,44 @@ import SearchPage from './search.page.ts';
 import SetupPage from './setup.page.ts';
 import BasePage from './base.page.ts';
 
-type PageName = 'homePage' | 'registrationPage' | 'setupPage' | 'boardPage' | 'searchPage' | 'accountPage' | 'basePage';
+type PageName = 
+  | 'homePage' 
+  | 'registrationPage' 
+  | 'setupPage' 
+  | 'boardPage' 
+  | 'searchPage' 
+  | 'accountPage';
 
-function pages(name:PageName) {
-  const items: { [key in PageName]: BasePage } = {
-    homePage: new HomePage(),
-    registrationPage: new RegistrationPage(),
-    setupPage: new SetupPage(),
-    boardPage: new BoardPage(),
-    searchPage: new SearchPage(),
-    accountPage: new AccountPage(),
-    basePage: new BasePage(),
-  };
-  return items[name];
+class PageFactory {
+  private static instance: PageFactory | null = null;
+
+  private constructor() {}
+
+  public static getInstance(): PageFactory {
+    if (!this.instance) {
+      this.instance = new PageFactory();
+    }
+    return this.instance;
+  }
+
+  public getPage(name: PageName): BasePage | HomePage | RegistrationPage {
+    const pages: { [key in PageName]: BasePage | HomePage | RegistrationPage } = {
+      homePage: new HomePage(),
+      registrationPage: new RegistrationPage(),
+      setupPage: new SetupPage(),
+      boardPage: new BoardPage(),
+      searchPage: new SearchPage(),
+      accountPage: new AccountPage(),
+    };
+
+    return pages[name];
+  }
 }
+
+function pages(name: PageName) {
+  return PageFactory.getInstance().getPage(name);
+}
+
 export {
   HomePage,
   RegistrationPage,
@@ -28,4 +52,5 @@ export {
   BoardPage,
   SearchPage,
   AccountPage,
+  BasePage,
 };

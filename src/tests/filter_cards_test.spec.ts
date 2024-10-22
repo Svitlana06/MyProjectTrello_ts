@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import { BoardPage} from '../po/pages/imports.ts';
+import { BoardPage} from '../po/pages/index.ts';
 import { url } from '../data/data.ts';
 import signIn from '../settings/sign_in.ts';
 

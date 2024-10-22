@@ -2,7 +2,7 @@ import { should } from 'chai';
 should(); 
 import  { valuesForFields } from '../data/data.ts';
 import signIn from '../settings/sign_in.ts';
-import { BasePage, AccountPage } from '../po/pages/imports.ts';
+import { BasePage, AccountPage } from '../po/pages/index.ts';
 
 describe('Modifying workspace setting', () => {
   before(async () => {

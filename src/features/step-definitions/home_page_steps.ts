@@ -1,6 +1,6 @@
 import { Given } from '@cucumber/cucumber';
 import { url } from '../../data/data.ts';
-import { HomePage } from '../../po/pages/imports.ts';
+import { HomePage } from '../../po/pages/index.ts';
 
 let homePage: HomePage;
 homePage = new HomePage();

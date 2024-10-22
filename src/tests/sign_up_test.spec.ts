@@ -1,5 +1,5 @@
 import { inputData, url, valuesForFields } from '../data/data.ts';
-import { RegistrationPage, HomePage, SetupPage, BasePage } from '../po/pages/imports.ts';
+import { RegistrationPage, HomePage, SetupPage, BasePage } from '../po/pages/index.ts';
 
 describe.skip('Sign up for a new Trello account', () => {
 

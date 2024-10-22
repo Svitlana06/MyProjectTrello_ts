@@ -2,11 +2,15 @@ import BasePage from './base.page.ts';
 import { SetupComponent } from './../components/index.ts';
 
 class SetupPage extends BasePage { // інтерфейс теж без base page
-  setupComponent: SetupComponent;
+
 
   constructor() {
     super('https://trello.com');
-    this.setupComponent = new SetupComponent();
   }
+
+  get setupComponent(): SetupComponent {
+    return SetupComponent.getInstance();
+  }
+  
 }
 export default SetupPage;

@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { should } from 'chai';
 should(); 
 import { valuesForFields } from '../../data/data.ts';
-import { AccountPage } from '../../po/pages/imports.ts';
+import { AccountPage } from '../../po/pages/index.ts';
 
 let accountPage: AccountPage;
 
@@ -19,8 +19,11 @@ When('I update workspace details', async () => {
 });
 
 When('I update my profile information', async () => {
-  await accountPage.profileVisabilityComponent.changeUsername.setValue(valuesForFields.newUserName);
-  await accountPage.profileVisabilityComponent.saveBtn.click();
+  const usernameInput = await accountPage.profileVisabilityComponent.changeUsername;
+  await usernameInput.setValue(valuesForFields.newUserName);
+  
+  const saveButton = await accountPage.profileVisabilityComponent.saveBtn;
+  await saveButton.click();
 
   await browser.waitUntil(
     async () => {
@@ -31,14 +34,12 @@ When('I update my profile information', async () => {
 });
 
 Then('the workspace settings should be updated successfully', async () => {
-  (await accountPage.settingsComponent.checkFrequency.getText()).should.equal( // чи варто створювати змінні??
+  (await accountPage.settingsComponent.checkFrequency.getText()).should.equal(
     valuesForFields.checkedFrequently
   );
 });
 
 Then('my profile should reflect the updates', async () => {
-  assert.strictEqual(
-    await accountPage.profileVisabilityComponent.checkNewUsername.getText(), // чи варто створювати змінні??
-    valuesForFields.newUserNameProfile
-  );
+  const newUsernameText = await accountPage.profileVisabilityComponent.getNewUsername();
+  assert.strictEqual(newUsernameText, valuesForFields.newUserNameProfile);
 });

@@ -3,13 +3,17 @@ import BasePage from './base.page.ts';
 
 
 class AccountPage extends BasePage {
-  settingsComponent: SettingsComponent;
-  profileVisabilityComponent: ProfileVisabilityComponent;
 
   constructor() {
     super('https://trello.com');
-    this.settingsComponent = new SettingsComponent(); // в гетери винести - повертати новий об'єкт через гетер
-    this.profileVisabilityComponent = new ProfileVisabilityComponent();
+  }
+
+  get settingsComponent(): SettingsComponent {
+    return new SettingsComponent();
+  }
+
+  get profileVisabilityComponent(): ProfileVisabilityComponent {
+    return ProfileVisabilityComponent.getInstance();
   }
 }
 

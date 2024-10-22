@@ -1,37 +1,5 @@
-interface InputData { // інтерфейси винести окремо, дані залишити - почати з сінглтона і перевести всі компоненти на гетери і винести локатори вгору
-  emailSignUp: string;
-  emailLogIn: string;
-  password: string;
-}
-
-interface Url {
-  signup: string;
-  createFirstTeam: string;
-  login: string;
-  boards: string;
-  test: string;
-  filter: string;
-  filterOverdue: string;
-  newBoardUrl: string;
-}
-
-interface ValuesForFields {
-  registrationBoard: string;
-  registrationListFirst: string;
-  registrationListSecond: string;
-  registrationListThird: string;
-  registrationCardFirst: string;
-  registrationCardSecond: string;
-  searchingBoard: string;
-  checkedFrequently: string;
-  newUserName: string;
-  newUserNameProfile: string;
-  newListName: string;
-  newCardName: string;
-  newBoardName: string;
-  nameExistedBoard: string;
-  username: string;
-}
+// почати з сінглтона і перевести всі компоненти на гетери і винести локатори вгору
+import { InputData, Url, ValuesForFields } from './interfaces.ts';
 
 const inputData: InputData = {
   emailSignUp: 'oldd9000d560asd@gmail.com',

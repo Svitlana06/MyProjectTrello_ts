@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import { BasePage, SearchPage } from '../po/pages/imports.ts';
+import { BasePage, SearchPage } from '../po/pages/index.ts';
 import { url, valuesForFields } from '../data/data.ts';
 import signIn from '../settings/sign_in.ts';
 

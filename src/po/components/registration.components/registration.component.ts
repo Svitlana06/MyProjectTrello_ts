@@ -1,25 +1,37 @@
 import BaseComponent from '../common.components/base.component.ts';
 
 class RegistrationComponent extends BaseComponent {
-  constructor() {
+  private static instance: RegistrationComponent | null = null;
+
+  private constructor() {
     super('#WhiteboxContainer');
   }
 
-  input(name: 'email' | 'username' | 'password') {
-    const selectors: {[key:string]: string}= {
-      email: '#email',
-      username: '#username',
-      password: '#password',
-    };
-    return this.rootEL.$(selectors[name.toLowerCase()]);
+  public static getInstance(): RegistrationComponent {
+    if (this.instance === null) {
+      this.instance = new RegistrationComponent();
+    }
+    return this.instance;
   }
 
+  // Винесені локатори
+  private readonly selectors: { [key: string]: string } = {
+    email: '#email',
+    username: '#username',
+    password: '#password',
+    signUp: '#signup-submit',
+    signIn: '#login-submit',
+  };
+
+  // Метод для отримання інпутів
+  input(name: 'email' | 'username' | 'password') {
+    return this.rootEL.$(this.selectors[name]);
+  }
+
+  // Метод для отримання кнопки
   submitBtn(name: 'signUp' | 'signIn') {
-    const selectors: {[key:string]: string}={
-      signUp: '#signup-submit',
-      signIn: '#login-submit',
-    };
-    return this.rootEL.$(selectors[name]);
+    return this.rootEL.$(this.selectors[name]);
   }
 }
+
 export default RegistrationComponent;

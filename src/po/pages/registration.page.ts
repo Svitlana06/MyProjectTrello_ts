@@ -1,12 +1,19 @@
-import BasePage from './base.page.ts';
-import  { RegistrationComponent } from './../components/index.ts';
+interface IRegistrationPage {
+  get registrationComponent(): RegistrationComponent;
+}
 
-class RegistrationPage extends BasePage { // додати інтерфейс - додати методи і імплементацію через клас
-  registrationComponent: RegistrationComponent;
+import { RegistrationComponent } from './../components/index.ts';
+
+class RegistrationPage implements IRegistrationPage {
+  url: string;
 
   constructor() {
-    super('https://trello.com');
-    this.registrationComponent = new RegistrationComponent();
+    this.url = 'https://trello.com';
+  }
+
+  get registrationComponent(): RegistrationComponent {
+    return RegistrationComponent.getInstance();
   }
 }
+
 export default RegistrationPage;
