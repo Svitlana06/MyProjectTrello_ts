@@ -13,7 +13,7 @@ class AccountPage extends BasePage {
   }
 
   get profileVisabilityComponent(): ProfileVisabilityComponent {
-    return ProfileVisabilityComponent.getInstance();
+    return new ProfileVisabilityComponent();
   }
 }
 

@@ -1,7 +1,7 @@
-import BaseComponent from './base.component.ts';
+import BaseComponent from './base.ts';
 
 class BoardWindowComponent extends BaseComponent {
-  // Винесені локатори
+  
   private readonly settingsSelectors: { [key: string]: string } = {
     name: '//*[@data-testid="create-board-title-input"]',
     type: '//*[@data-testid="header-create-board-button"]',
@@ -10,15 +10,15 @@ class BoardWindowComponent extends BaseComponent {
   private readonly submitBtnSelector: string = '//*[@data-testid="create-board-submit-button"]';
 
   constructor() {
-    super('//*[@data-testid="header-container"]'); // Виклик конструктора батьківського класу
+    super('//*[@data-testid="header-container"]');
   }
 
   settings(name: 'name' | 'type') {
-    return this.rootEL.$(this.settingsSelectors[name]); // Використовуємо локатор з поля
+    return this.rootEL.$(this.settingsSelectors[name]);
   }
 
   get submitBtn() {
-    return $(this.submitBtnSelector); // Повертаємо локатор для кнопки підтвердження
+    return $(this.submitBtnSelector);
   }
 }
 

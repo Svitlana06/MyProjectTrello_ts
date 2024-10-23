@@ -1,4 +1,4 @@
-import  BaseComponent from '../common.components/base.component.ts';
+import  BaseComponent from '../common.components/base.ts';
 
 class WorkplaceComponent extends BaseComponent {
   constructor() {

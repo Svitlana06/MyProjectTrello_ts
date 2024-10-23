@@ -1,9 +1,8 @@
-import BaseComponent from '../common.components/base.component.ts';
+import BaseComponent from '../common.components/base.ts';
 
 class SetupComponent extends BaseComponent {
   private static instance: SetupComponent | null = null;
 
-  // Винесені локатори
   private readonly initialSettingsSelectors: { [key: string]: string } = {
     goal: '//p[contains(text(), "Упорядкування ідей")]',
     board: '#boardName',

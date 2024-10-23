@@ -1,4 +1,4 @@
-import BaseComponent from'../common.components/base.component.ts';
+import BaseComponent from'../common.components/base.ts';
 
 class SearchComponent extends BaseComponent {
   constructor() {

@@ -10,19 +10,19 @@ class HomePage implements IHomePage {
   private url: string;
 
   constructor() {
-    this.url = 'https://trello.com'; // Задаємо URL
+    this.url = 'https://trello.com';
   }
 
   async open(): Promise<void> {
-    await browser.url(this.url); // Відкриваємо URL
+    await browser.url(this.url);
   }
 
   get mainComponent(): MainComponent {
-    return new MainComponent(); // Повертаємо новий екземпляр MainComponent
+    return new MainComponent();
   }
 
   get headerHomeComponent(): HeaderHomeComponent {
-    return new HeaderHomeComponent(); // Повертаємо новий екземпляр HeaderHomeComponent
+    return new HeaderHomeComponent();
   }
 }
 

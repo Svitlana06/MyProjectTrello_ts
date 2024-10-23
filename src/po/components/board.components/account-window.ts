@@ -1,8 +1,8 @@
-import BaseComponent from '../common.components/base.component.ts';
+import BaseComponent from '../common.components/base.ts';
 import { inputData } from '../../../data/data.ts';
 
 class AccountWindowComponent extends BaseComponent {
-  // Винесені локатори
+  
   private readonly userSelector: { [key: string]: string } = {
     newUser: `//h2[text()="Обліковий запис"]//ancestor::div//div[text()="${inputData.emailSignUp}"]`,
     existedUser: `//h2[text()="Обліковий запис"]//ancestor::div//div[text()="${inputData.emailLogIn}"]`,
@@ -18,11 +18,11 @@ class AccountWindowComponent extends BaseComponent {
   }
 
   checkUser(name: 'newUser' | 'existedUser') {
-    return this.rootEL.$(this.userSelector[name]); // Використовуємо локатор з поля
+    return this.rootEL.$(this.userSelector[name]);
   }
 
   settingsBtn(name: 'account' | 'profile') {
-    return this.rootEL.$(this.settingsSelectors[name]); // Використовуємо локатор з поля
+    return this.rootEL.$(this.settingsSelectors[name]);
   }
 }
 

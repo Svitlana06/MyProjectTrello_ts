@@ -7,7 +7,7 @@ import { AccountPage } from '../../po/pages/index.ts';
 
 let accountPage: AccountPage;
 
-accountPage = new AccountPage(); // 
+accountPage = new AccountPage(); 
 
 When('I update workspace details', async () => {
   await accountPage.settingsComponent.openFrequencyProperty.click();

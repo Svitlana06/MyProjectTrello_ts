@@ -1,4 +1,4 @@
-import BaseComponent from '../common.components/base.component.ts';
+import BaseComponent from '../common.components/base.ts';
 
 class RegistrationComponent extends BaseComponent {
   private static instance: RegistrationComponent | null = null;
@@ -14,7 +14,6 @@ class RegistrationComponent extends BaseComponent {
     return this.instance;
   }
 
-  // Винесені локатори
   private readonly selectors: { [key: string]: string } = {
     email: '#email',
     username: '#username',
@@ -23,12 +22,10 @@ class RegistrationComponent extends BaseComponent {
     signIn: '#login-submit',
   };
 
-  // Метод для отримання інпутів
   input(name: 'email' | 'username' | 'password') {
     return this.rootEL.$(this.selectors[name]);
   }
 
-  // Метод для отримання кнопки
   submitBtn(name: 'signUp' | 'signIn') {
     return this.rootEL.$(this.selectors[name]);
   }

@@ -1,8 +1,8 @@
-import BaseComponent from '../common.components/base.component.ts';
+import BaseComponent from '../common.components/base.ts';
 import { valuesForFields } from '../../../data/data.ts';
 
 class BoardComponent extends BaseComponent {
-  // Винесені локатори
+  
   private readonly createSelectors: { [key: string]: string } = {
     list: '//*[@data-testid="list-composer-button"]',
     card: '//li[@data-list-id="66b47b03606ffbb4544dcced"]//div[@data-testid="list-footer"]',
@@ -30,19 +30,19 @@ class BoardComponent extends BaseComponent {
   }
 
   createBtn(name: 'list' | 'card') {
-    return this.rootEL.$(this.createSelectors[name]); // Використовуємо локатор з поля
+    return this.rootEL.$(this.createSelectors[name]);
   }
 
   addBtn(name: 'list' | 'card') {
-    return this.rootEL.$(this.addSelectors[name]); // Використовуємо локатор з поля
+    return this.rootEL.$(this.addSelectors[name]);
   }
 
   input(name: 'list' | 'card') {
-    return this.rootEL.$(this.inputSelectors[name]); // Використовуємо локатор з поля
+    return this.rootEL.$(this.inputSelectors[name]);
   }
 
   check(name: 'list' | 'card' | 'board' | 'existedBoard') {
-    return this.rootEL.$(this.checkSelectors[name]); // Використовуємо локатор з поля
+    return this.rootEL.$(this.checkSelectors[name]);
   }
 }
 
