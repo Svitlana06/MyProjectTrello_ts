@@ -10,12 +10,14 @@ let accountPage: AccountPage;
 accountPage = new AccountPage(); 
 
 When('I update workspace details', async () => {
-  await accountPage.settingsComponent.openFrequencyProperty.click();
+  const openFrequency = await accountPage.settingsComponent.openFrequencyProperty;
+  await openFrequency.click();
 
-  await accountPage.settingsComponent.changeFrequency.waitForExist({
+  const changeFrequency = await accountPage.settingsComponent.changeFrequency;
+  await changeFrequency.waitForExist({
     timeout: 10000,
   });
-  await accountPage.settingsComponent.changeFrequency.click();
+  await changeFrequency.click();
 });
 
 When('I update my profile information', async () => {
@@ -34,9 +36,9 @@ When('I update my profile information', async () => {
 });
 
 Then('the workspace settings should be updated successfully', async () => {
-  (await accountPage.settingsComponent.checkFrequency.getText()).should.equal(
-    valuesForFields.checkedFrequently
-  );
+  const frequencyElement = await accountPage.settingsComponent.checkFrequency;
+  const frequencyText = await frequencyElement.getText()
+  frequencyText.should.equal(valuesForFields.checkedFrequently);
 });
 
 Then('my profile should reflect the updates', async () => {

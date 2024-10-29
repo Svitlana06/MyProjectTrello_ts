@@ -3,27 +3,32 @@ import { inputData, url } from '../../data/data.ts';
 import { HomePage, RegistrationPage } from '../../po/pages/index.ts';
 
 async function login() {
-  let homePage : HomePage; // подивитись над логікою папки feature
-  homePage = new HomePage();
-  let registrationPage: RegistrationPage;
-  registrationPage = new RegistrationPage();
+  const homePage = new HomePage();
+  const registrationPage = new RegistrationPage();
+  
   await homePage.open();
-  await homePage.headerHomeComponent.signInBtn.click();
+  const signInBtn= await homePage.headerHomeComponent.signInBtn;
+  signInBtn.click();
 
   await browser.waitUntil(async () => (await browser.getUrl()).includes(url.login), {
     timeout: 10000,
   });
 
-  await registrationPage.registrationComponent.input('username').setValue(inputData.emailLogIn);
-  await registrationPage.registrationComponent.submitBtn('signIn').click();
+  const usernameInput = await registrationPage.registrationComponent.input('username');
+  await usernameInput.setValue(inputData.emailLogIn);
+  
+  const signInButton = await registrationPage.registrationComponent.submitBtn('signIn');
+  await signInButton.click();
 
   await browser.waitUntil(
-    async () => await registrationPage.registrationComponent.input('password').isDisplayed(),
+    async () => await (await registrationPage.registrationComponent.input('password')).isDisplayed(),
     { timeout: 10000 }
   );
 
-  await registrationPage.registrationComponent.input('password').setValue(inputData.password);
-  await registrationPage.registrationComponent.submitBtn('signIn').click();
+  const passwordInput = await registrationPage.registrationComponent.input('password');
+  await passwordInput.setValue(inputData.password);
+  
+  await (await registrationPage.registrationComponent.submitBtn('signIn')).click();
 
   await browser.waitUntil(async () => (await browser.getUrl()).includes(url.boards), {
     timeout: 15000,

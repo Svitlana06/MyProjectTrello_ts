@@ -1,6 +1,6 @@
 Feature: Trello Feature
 
-
+@login_on_the_site
     Scenario: Modifying workspace settings
     Given I am on the workspace settings page
     When I update workspace details
@@ -35,7 +35,6 @@ Feature: Trello Feature
    Given I am on the existing board
    When I apply a filter for specific criteria
    Then only cards matching the criteria should be displayed
-
 
 @login_on_the_site
   Scenario: Searching for the boards

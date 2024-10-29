@@ -1,6 +1,7 @@
 class BaseComponent {
-  rootSelector:string;
-  constructor(rootSelector:string) {
+  rootSelector: string;
+  constructor(rootSelector: string) {
+
     this.rootSelector = rootSelector;
   }
 

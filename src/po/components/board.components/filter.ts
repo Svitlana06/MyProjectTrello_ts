@@ -1,4 +1,5 @@
 import BaseComponent from '../common.components/base.ts';
+import ElementWrapper from '../wrapper.ts';
 
 class FilterComponent extends BaseComponent {
   
@@ -6,15 +7,16 @@ class FilterComponent extends BaseComponent {
   private readonly selectEndDatePropertySelector: string = '//div[contains(@title, "Протерміновано")]';
 
   constructor() {
-    super('#board');
+    const rootSelector = '#board';
+    super(rootSelector);
   }
 
-  get openBtn() {
-    return $(this.openBtnSelector);
+  get openBtn(): Promise<WebdriverIO.Element> {
+    return ElementWrapper.getChildElement(this.rootSelector, this.openBtnSelector);
   }
 
-  get selectEndDateProperty() {
-    return $(this.selectEndDatePropertySelector);
+  get selectEndDateProperty(): Promise<WebdriverIO.Element> {
+    return ElementWrapper.getChildElement(this.rootSelector, this.selectEndDatePropertySelector);
   }
 }
 

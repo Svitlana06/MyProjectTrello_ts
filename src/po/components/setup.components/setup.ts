@@ -1,9 +1,12 @@
 import BaseComponent from '../common.components/base.ts';
+import ElementWrapper from '../wrapper.ts';
+
+type InitialSettings = 'goal' | 'board' | 'listFirst' | 'listSecond' | 'listThird' | 'cardFirst' | 'cardSecond';
+type SubmitButtons = 'continue' | 'next' | 'skip';
 
 class SetupComponent extends BaseComponent {
-  private static instance: SetupComponent | null = null;
 
-  private readonly initialSettingsSelectors: { [key: string]: string } = {
+  private readonly initialSettingsSelectors: { [key in InitialSettings]: string } = {
     goal: '//p[contains(text(), "Упорядкування ідей")]',
     board: '#boardName',
     listFirst: '#list1',
@@ -13,33 +16,29 @@ class SetupComponent extends BaseComponent {
     cardSecond: '#card2',
   };
 
-  private readonly submitBtnSelectors: { [key: string]: string } = {
+  private readonly submitBtnSelectors: { [key in SubmitButtons]: string } = {
     continue: '//button[text()="Продовжити"]',
     next: '//button[text()="Далі"]',
     skip: '//button[text()="Пропустити"]',
   };
 
-  private constructor() {
-    super('.nvfJSf_0WwLXsm');
+  private readonly specialOffer: string ='//span[text()="Спеціальна пропозиція!"]'
+
+  public constructor() {
+    const rootSelector = '.nvfJSf_0WwLXsm';
+    super(rootSelector);
   }
 
-  public static getInstance(): SetupComponent {
-    if (this.instance === null) {
-      this.instance = new SetupComponent();
-    }
-    return this.instance;
+  async initialSettings(name: keyof typeof this.initialSettingsSelectors): Promise<WebdriverIO.Element> {
+    return await ElementWrapper.getChildElement(this.rootSelector, this.initialSettingsSelectors[name]);
   }
 
-  initialSettings(name: 'goal' | 'board' | 'listFirst' | 'listSecond' | 'listThird' | 'cardFirst' | 'cardSecond') {
-    return this.rootEL.$(this.initialSettingsSelectors[name]);
+  async submitBtn(name: keyof typeof this.submitBtnSelectors): Promise<WebdriverIO.Element> {
+    return await ElementWrapper.getChildElement(this.rootSelector, this.submitBtnSelectors[name]);
   }
 
-  submitBtn(name: 'continue' | 'next' | 'skip') {
-    return this.rootEL.$(this.submitBtnSelectors[name]);
-  }
-
-  get premiumVersionOffer() {
-    return $('//span[text()="Спеціальна пропозиція!"]');
+  async premiumVersionOffer(): Promise<WebdriverIO.Element> {
+    return await ElementWrapper.getChildElement(this.rootSelector, this.specialOffer);
   }
 }
 

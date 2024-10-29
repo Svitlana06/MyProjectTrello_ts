@@ -6,45 +6,52 @@ let setupPage: SetupPage;
 setupPage = new SetupPage();
 
 When('I set up a profile', async () => {
-  await setupPage.setupComponent.initialSettings('goal').click();
-  await setupPage.setupComponent.submitBtn('continue').click();
+  const goalElement = await setupPage.setupComponent.initialSettings('goal');
+  await goalElement.click();
+  
+  const continueBtn = await setupPage.setupComponent.submitBtn('continue');
+  await continueBtn.click();
 
-  await setupPage.setupComponent.initialSettings('board').waitForDisplayed({ timeout: 10000 });
-  await setupPage.setupComponent
-    .initialSettings('board')
-    .setValue(valuesForFields.registrationBoard);
-  await setupPage.setupComponent.submitBtn('next').click();
-  await setupPage.setupComponent.initialSettings('listFirst').waitForDisplayed({ timeout: 10000 });
-  await setupPage.setupComponent
-    .initialSettings('listFirst')
-    .setValue(valuesForFields.registrationListFirst);
-  await setupPage.setupComponent
-    .initialSettings('listSecond')
-    .setValue(valuesForFields.registrationListSecond);
-  await setupPage.setupComponent
-    .initialSettings('listThird')
-    .setValue(valuesForFields.registrationListThird);
-  await setupPage.setupComponent.submitBtn('next').click();
+  const boardElement = await setupPage.setupComponent.initialSettings('board');
+  await boardElement.waitForDisplayed({ timeout: 10000 });
+  await boardElement.setValue(valuesForFields.registrationBoard);
+  
+  const nextBtn = await setupPage.setupComponent.submitBtn('next');
+  await nextBtn.click();
 
-  await setupPage.setupComponent.initialSettings('cardFirst').waitForDisplayed({ timeout: 10000 });
-  await setupPage.setupComponent
-    .initialSettings('cardFirst')
-    .setValue(valuesForFields.registrationCardFirst);
-  await setupPage.setupComponent
-    .initialSettings('cardSecond')
-    .setValue(valuesForFields.registrationCardSecond);
-  await setupPage.setupComponent.submitBtn('next').click();
+  const listFirstElement = await setupPage.setupComponent.initialSettings('listFirst');
+  await listFirstElement.waitForDisplayed({ timeout: 10000 });
+  await listFirstElement.setValue(valuesForFields.registrationListFirst);
+  
+  const listSecondElement = await setupPage.setupComponent.initialSettings('listSecond');
+  await listSecondElement.setValue(valuesForFields.registrationListSecond);
+  
+  const listThirdElement = await setupPage.setupComponent.initialSettings('listThird');
+  await listThirdElement.setValue(valuesForFields.registrationListThird);
+  
+  await nextBtn.click();
 
-  await setupPage.setupComponent.submitBtn('skip').click();
+  const cardFirstElement = await setupPage.setupComponent.initialSettings('cardFirst');
+  await cardFirstElement.waitForDisplayed({ timeout: 10000 });
+  await cardFirstElement.setValue(valuesForFields.registrationCardFirst);
+  
+  const cardSecondElement = await setupPage.setupComponent.initialSettings('cardSecond');
+  await cardSecondElement.setValue(valuesForFields.registrationCardSecond);
+  
+  await nextBtn.click();
+
+  const skipBtn = await setupPage.setupComponent.submitBtn('skip');
+  await skipBtn.click();
 
   await browser.waitUntil(
     async () => {
-      return setupPage.setupComponent.premiumVersionOffer.isDisplayed();
+      const premiumElement = await setupPage.setupComponent.premiumVersionOffer();
+      return await premiumElement.isDisplayed();
     },
     {
       timeout: 10000,
     }
   );
 
-  await setupPage.setupComponent.submitBtn('skip').click();
+  await skipBtn.click();
 });

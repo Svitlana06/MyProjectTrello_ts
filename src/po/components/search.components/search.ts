@@ -2,7 +2,8 @@ import BaseComponent from'../common.components/base.ts';
 
 class SearchComponent extends BaseComponent {
   constructor() {
-    super('//*[@data-testid="advanced-search-input"]');
+    const rootSelector = '//*[@data-testid="advanced-search-input"]';
+    super(rootSelector);
   }
 }
 

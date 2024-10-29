@@ -1,4 +1,5 @@
 import BaseComponent from './base.ts';
+import ElementWrapper from '../wrapper.ts';
 
 class HeaderComponent extends BaseComponent {
   
@@ -7,19 +8,20 @@ class HeaderComponent extends BaseComponent {
   private readonly setSearchSelector: string = '//input[@placeholder="Пошук"]';
 
   constructor() {
-    super('//*[@data-testid="header-container"]');
+    const rootSelector = '//*[@data-testid="header-container"]';
+    super(rootSelector);
   }
 
-  get openAccount() {
-    return $(this.openAccountSelector);
+  get openAccount(): Promise<WebdriverIO.Element> {
+    return ElementWrapper.getChildElement(this.rootSelector, this.openAccountSelector);
   }
 
-  get addBoardBtn() {
-    return $(this.addBoardBtnSelector);
+  get addBoardBtn(): Promise<WebdriverIO.Element> {
+    return ElementWrapper.getChildElement(this.rootSelector, this.addBoardBtnSelector);
   }
 
-  get setSearch() {
-    return $(this.setSearchSelector);
+  get setSearch(): Promise<WebdriverIO.Element> {
+    return ElementWrapper.getChildElement(this.rootSelector, this.setSearchSelector);
   }
 }
 

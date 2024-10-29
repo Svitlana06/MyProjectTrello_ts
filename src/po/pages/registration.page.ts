@@ -12,7 +12,7 @@ class RegistrationPage implements IRegistrationPage {
   }
 
   get registrationComponent(): RegistrationComponent {
-    return RegistrationComponent.getInstance();
+    return new RegistrationComponent();
   }
 }
 

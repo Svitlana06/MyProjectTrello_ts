@@ -1,15 +1,17 @@
 import BaseComponent from '../common.components/base.ts';
+import ElementWrapper from '../wrapper.ts';
 
 class MainComponent extends BaseComponent {
   
   private readonly signUpBtnSelector: string = '//*[contains(@aria-label, "Sign up")]';
 
   constructor() {
-    super('#skip-target');
+    const rootSelector = '#skip-target';
+    super(rootSelector);
   }
 
-  get signUpBtn() {
-    return $(this.signUpBtnSelector);
+  get signUpBtn(): Promise<WebdriverIO.Element> {
+    return ElementWrapper.getChildElement(this.rootSelector, this.signUpBtnSelector);
   }
 }
 

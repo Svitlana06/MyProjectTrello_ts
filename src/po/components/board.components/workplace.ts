@@ -2,7 +2,8 @@ import  BaseComponent from '../common.components/base.ts';
 
 class WorkplaceComponent extends BaseComponent {
   constructor() {
-    super('//*[@data-testid="current-workspace-expanded"]');
+    const rootSelector = '//*[@data-testid="current-workspace-expanded"]';
+    super(rootSelector);
   }
 }
 export default WorkplaceComponent;

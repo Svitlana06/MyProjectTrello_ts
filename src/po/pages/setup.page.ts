@@ -9,7 +9,7 @@ class SetupPage extends BasePage { // інтерфейс теж без base page
   }
 
   get setupComponent(): SetupComponent {
-    return SetupComponent.getInstance();
+    return new SetupComponent();
   }
   
 }

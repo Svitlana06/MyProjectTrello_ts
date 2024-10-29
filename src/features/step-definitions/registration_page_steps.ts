@@ -6,8 +6,11 @@ let registrationPage: RegistrationPage;
 registrationPage = new RegistrationPage();
 
 When('I enter valid registration details', async () => {
-  await registrationPage.registrationComponent.input('email').setValue(inputData.emailSignUp);
-  await registrationPage.registrationComponent.submitBtn('signUp').click();
+  const emailInput = await registrationPage.registrationComponent.input('email');
+  await emailInput.setValue(inputData.emailSignUp);
+  
+  const signUpButton = await registrationPage.registrationComponent.submitBtn('signUp');
+  await signUpButton.click();
 
   await browser.waitUntil(
     async () => {
@@ -18,3 +21,4 @@ When('I enter valid registration details', async () => {
     }
   );
 });
+

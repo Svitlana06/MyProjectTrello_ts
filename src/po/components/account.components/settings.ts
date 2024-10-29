@@ -1,4 +1,5 @@
 import BaseComponent from '../common.components/base.ts';
+import ElementWrapper from '../wrapper.ts';
 
 class SettingsComponent extends BaseComponent {
   private readonly openFrequencySelector: string = '//label[text()="Частота"]/following-sibling::*';
@@ -6,19 +7,20 @@ class SettingsComponent extends BaseComponent {
   private readonly checkFrequencySelector: string = '//label[text()="Частота"]/following-sibling::div//div';
 
   constructor() {
-    super('.tabbed-pane-main-col.u-clearfix.mod-wider'); 
+    const rootSelector = '.tabbed-pane-main-col.u-clearfix.mod-wider';
+    super(rootSelector);
   }
 
-  get openFrequencyProperty() {
-    return $(this.openFrequencySelector); 
+  get openFrequencyProperty(): Promise<WebdriverIO.Element> {
+    return ElementWrapper.getChildElement(this.rootSelector, this.openFrequencySelector);
   }
-  
-  get changeFrequency() {
-    return $(this.changeFrequencySelector); 
+
+  get changeFrequency(): Promise<WebdriverIO.Element> {
+    return ElementWrapper.getChildElement(this.rootSelector, this.changeFrequencySelector);
   }
-  
-  get checkFrequency() {
-    return $(this.checkFrequencySelector); 
+
+  get checkFrequency(): Promise<WebdriverIO.Element> {
+    return ElementWrapper.getChildElement(this.rootSelector, this.checkFrequencySelector);
   }
 }
 
