@@ -3,19 +3,21 @@ import ElementWrapper from '../wrapper.ts';
 import { valuesForFields } from '../../../data/data.ts';
 
 class ProfileVisibilityComponent extends BaseComponent {
-  
+  private usernameContainerLocator: string = '#username';
   private readonly selectors: { [key: string]: string } = {
     saveButton: '//button[text()="Зберегти"]',
-    usernameContainer: '#username',
+,
   };
 
-  public constructor() {
-    const rootSelector = '[data-testid="profile-tab-container"]';
-    super(rootSelector);
+  public constructor(private rootSelector: string = '[data-testid="profile-tab-container"]') {
+    super(this.rootSelector);
+  } 
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector)
   }
 
-  get changeUsername(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.selectors.usernameContainer);
+  get changeUsername() {
+    return container.getChildElement(this.usernameContainer);
   }
 
   get saveBtn(): Promise<WebdriverIO.Element> {
