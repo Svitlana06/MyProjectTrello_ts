@@ -1,14 +1,18 @@
 class ElementWrapper {
+  constructor(private element: Element | Promise<Element>, private locator: string) {}
+
+  public getElement(locator: string, childLocator?:) {
+    return new ElementWrapper($(locator), locator)
+  }
+
+  private getChild(childSelector: string) {
+    const elementInstance = await this.element;
+    return elementInstance.$(childSelector);
+  }
+
+  public getChildElement(childLocator: string) {
+    const fullSelector = `${this.locator} ${childLocator}`;
+    return this.getElement(this.getChild(childLocator), fullSelector); 
+  }
   
-  public static async getElement(locator: string): Promise<WebdriverIO.Element> {
-    return await $(locator);
-  }
-
-  public static async getChildElement(parentLocator: string, childLocator: string): Promise<WebdriverIO.Element> {
-    const parentElement = await this.getElement(parentLocator);
-    return await parentElement.$(childLocator);
-  }
 }
-
-
-export default ElementWrapper;
