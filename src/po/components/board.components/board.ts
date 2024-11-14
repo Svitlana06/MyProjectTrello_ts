@@ -9,47 +9,54 @@ type CheckType = 'list' | 'card' | 'board' | 'existedBoard';
 
 class BoardComponent extends BaseComponent {
   
-  private readonly createSelectors: { [key in CreateType]: string } = {
+  private createSelectors: { [key in CreateType]: string } = {
     list: '//*[@data-testid="list-composer-button"]',
     card: '//li[@data-list-id="66b47b03606ffbb4544dcced"]//div[@data-testid="list-footer"]',
   };
 
-  private readonly addSelectors: { [key in AddType]: string } = {
+  private addSelectors: { [key in AddType]: string } = {
     list: '//*[@data-testid="list-composer-add-list-button"]',
     card: '//*[@data-testid="list-card-composer-add-card-button"]',
   };
 
-  private readonly inputSelectors: { [key in InputType]: string } = {
+  private inputSelectors: { [key in InputType]: string } = {
     list: '//textarea[contains(@placeholder, "Введіть назву")]',
     card: '//*[@data-testid="list-card-composer-textarea"]',
   };
 
-  private readonly checkSelectors: { [key in CheckType]: string } = {
+  private checkSelectors: { [key in CheckType]: string } = {
     list: `//ol[@id="board"]//h2[text()="${valuesForFields.newListName}"]`,
     card: `//ol[@id="board"]//a[text()="${valuesForFields.newCardName}"]`,
     board: `//ul/div/li/a[text()="${valuesForFields.newBoardName}"]`,
     existedBoard: `//div[text()="${valuesForFields.nameExistedBoard}"]`,
   };
 
-  constructor() {
-    const rootSelector = '#content';
+  constructor(public rootSelector: string = '#content') {
     super(rootSelector);
   }
 
-  async createBtn(name: CreateType): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.createSelectors[name]);
+  private async getContainer(){
+    return await ElementWrapper.getElement(this.rootSelector);
+}
+
+  async createBtn(name: CreateType){
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.createSelectors[name]);
   }
 
-  async addBtn(name: AddType): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.addSelectors[name]);
+  async addBtn(name: AddType) {
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.addSelectors[name]);
   }
 
-  async input(name: InputType): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.inputSelectors[name]);
+  async input(name: InputType){
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.inputSelectors[name]);
   }
 
-  async check(name: CheckType): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.checkSelectors[name]);
+  async check(name: CheckType){
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.checkSelectors[name]);
   }
 }
 

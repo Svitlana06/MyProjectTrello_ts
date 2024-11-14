@@ -32,10 +32,10 @@ When('I add a new card', async () => {
 });
 
 When('I apply a filter for specific criteria', async () => {
-  const openBtn = await boardPage.filterComponent.openBtn;
+  const openBtn = await boardPage.filterComponent.openBtn();
   await openBtn.click();
   
-  const selectEndDateProperty = await boardPage.filterComponent.selectEndDateProperty;
+  const selectEndDateProperty = await boardPage.filterComponent.selectEndDateProperty();
   await selectEndDateProperty.click();
   
   await browser.waitUntil(

@@ -8,7 +8,8 @@ async function signIn() { // в ліби в хелпер функції; ще п
         let registrationPage: RegistrationPage;
         registrationPage = new RegistrationPage();
         await homePage.open();
-        await homePage.headerHomeComponent.signInBtn.click();
+        const signInBtn = await homePage.headerHomeComponent.signInBtn;
+        signInBtn.click()
 
         await browser.waitUntil(
             async () => {

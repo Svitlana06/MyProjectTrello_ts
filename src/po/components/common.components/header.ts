@@ -3,25 +3,31 @@ import ElementWrapper from '../wrapper.ts';
 
 class HeaderComponent extends BaseComponent {
   
-  private readonly openAccountSelector: string = '//*[@data-testid="header-member-menu-avatar"]';
-  private readonly addBoardBtnSelector: string = '//*[@data-testid="header-create-menu-button"]';
-  private readonly setSearchSelector: string = '//input[@placeholder="Пошук"]';
+  private openAccountSelector: string = '//*[@data-testid="header-member-menu-avatar"]';
+  private addBoardBtnSelector: string = '//*[@data-testid="header-create-menu-button"]';
+  private setSearchSelector: string = '//input[@placeholder="Пошук"]';
 
-  constructor() {
-    const rootSelector = '//*[@data-testid="header-container"]';
+  constructor(public rootSelector: string ='//*[@data-testid="header-container"]') {
     super(rootSelector);
   }
 
-  get openAccount(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.openAccountSelector);
+  private async getContainer(){
+    return await ElementWrapper.getElement(this.rootSelector);
+}
+
+  async openAccount() {
+    const container = await this.getContainer();
+    return ElementWrapper.getChildElement(container, this.openAccountSelector);
   }
 
-  get addBoardBtn(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.addBoardBtnSelector);
+  async addBoardBtn(){
+    const container = await this.getContainer();
+    return ElementWrapper.getChildElement(container, this.addBoardBtnSelector);
   }
 
-  get setSearch(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.setSearchSelector);
+  async setSearch() {
+    const container = await this.getContainer();
+    return ElementWrapper.getChildElement(container, this.setSearchSelector);
   }
 }
 

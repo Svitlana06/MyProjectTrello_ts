@@ -3,15 +3,19 @@ import ElementWrapper from '../wrapper.ts';
 
 class SearchWindowComponent extends BaseComponent {
   
-  private readonly openResultsBtnSelector: string = '//span[text()="Переглянути всі результати"]';
+  private openResultsBtnSelector: string = '//span[text()="Переглянути всі результати"]';
 
-  constructor() {
-    const rootSelector = '//*[@data-testid="search-dialog-dialog-wrapper"]';
+  constructor(public rootSelector: string ='//*[@data-test-id="search-dialog-dialog-wrapper"]') {
     super(rootSelector);
   }
 
-  async openResultsBtn(): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getElement(this.openResultsBtnSelector);
+  private async getContainer(){
+    return await ElementWrapper.getElement(this.rootSelector);
+}
+
+  async openResultsBtn(){
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.openResultsBtnSelector);
   }
 }
 

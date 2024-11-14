@@ -8,7 +8,7 @@ basePage = new BasePage('https://trello.com');
 
 Given('I am on the workspace settings page', async () => {
   expect((await browser.getUrl()).includes(url.boards)).to.be.true;
-  const openAccount = await basePage.headerComponent.openAccount;
+  const openAccount = await basePage.headerComponent.openAccount();
   await openAccount.click();
   
   const accountButton = await basePage.accountWindowComponent.settingsBtn('account');
@@ -17,20 +17,20 @@ Given('I am on the workspace settings page', async () => {
 
 Given('I am on the profile settings page', async () => {
   expect((await browser.getUrl()).includes(url.boards)).to.be.true;
-  const openAccount = await basePage.headerComponent.openAccount;
+  const openAccount = await basePage.headerComponent.openAccount();
   await openAccount.click();
   const profileButton = await basePage.accountWindowComponent.settingsBtn('profile');
   await profileButton.click();
 });
 
 When('I add a new board', async () => {
-  const addBoardBtn = await basePage.headerComponent.addBoardBtn; 
+  const addBoardBtn = await basePage.headerComponent.addBoardBtn(); 
   await addBoardBtn.click();
   const typeButton = await basePage.boardWindowComponent.settings('type');
   await typeButton.click();
   const nameInput = await basePage.boardWindowComponent.settings('name');
   await nameInput.setValue(valuesForFields.newBoardName);
-  const submitBtn = await basePage.boardWindowComponent.submitBtn;
+  const submitBtn = await basePage.boardWindowComponent.submitBtn();
   await submitBtn.waitForDisplayed();
   await submitBtn.click();
 
@@ -45,7 +45,7 @@ When('I add a new board', async () => {
 });
 
 When('I seek the boards', async () => {
-  const setSearch = await basePage.headerComponent.setSearch;
+  const setSearch = await basePage.headerComponent.setSearch();
   await setSearch.setValue(valuesForFields.searchingBoard);
   
   const openResultsBtn = await basePage.searchWindowComponent.openResultsBtn();
@@ -63,7 +63,7 @@ When('I seek the boards', async () => {
 });
 
 Then('a new account should be created successfully', async () => {
-  const openAccountBtn = await basePage.headerComponent.openAccount;
+  const openAccountBtn = await basePage.headerComponent.openAccount();
   await openAccountBtn.click();
   
   const userElement = await basePage.accountWindowComponent.checkUser('newUser');

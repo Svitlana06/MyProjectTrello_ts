@@ -10,10 +10,10 @@ let accountPage: AccountPage;
 accountPage = new AccountPage(); 
 
 When('I update workspace details', async () => {
-  const openFrequency = await accountPage.settingsComponent.openFrequencyProperty;
+  const openFrequency = await accountPage.settingsComponent.openFrequencyProperty();
   await openFrequency.click();
 
-  const changeFrequency = await accountPage.settingsComponent.changeFrequency;
+  const changeFrequency = await accountPage.settingsComponent.changeFrequency();
   await changeFrequency.waitForExist({
     timeout: 10000,
   });
@@ -21,10 +21,10 @@ When('I update workspace details', async () => {
 });
 
 When('I update my profile information', async () => {
-  const usernameInput = await accountPage.profileVisabilityComponent.changeUsername;
+  const usernameInput = await accountPage.profileVisabilityComponent.changeUsername();
   await usernameInput.setValue(valuesForFields.newUserName);
   
-  const saveButton = await accountPage.profileVisabilityComponent.saveBtn;
+  const saveButton = await accountPage.profileVisabilityComponent.saveBtn();
   await saveButton.click();
 
   await browser.waitUntil(
@@ -36,12 +36,12 @@ When('I update my profile information', async () => {
 });
 
 Then('the workspace settings should be updated successfully', async () => {
-  const frequencyElement = await accountPage.settingsComponent.checkFrequency;
+  const frequencyElement = await accountPage.settingsComponent.checkFrequency();
   const frequencyText = await frequencyElement.getText()
   frequencyText.should.equal(valuesForFields.checkedFrequently);
 });
 
 Then('my profile should reflect the updates', async () => {
-  const newUsernameText = await accountPage.profileVisabilityComponent.getNewUsername();
+  const newUsernameText = await (await accountPage.profileVisabilityComponent.getNewUsername()).getText();
   assert.strictEqual(newUsernameText, valuesForFields.newUserNameProfile);
 });

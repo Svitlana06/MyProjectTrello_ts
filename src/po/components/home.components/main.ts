@@ -3,15 +3,19 @@ import ElementWrapper from '../wrapper.ts';
 
 class MainComponent extends BaseComponent {
   
-  private readonly signUpBtnSelector: string = '//*[contains(@aria-label, "Sign up")]';
+  private signUpBtnSelector: string = '//*[contains(@aria-label, "Sign up")]';
 
-  constructor() {
-    const rootSelector = '#skip-target';
+  constructor(public rootSelector: string ='#skip-target') {
     super(rootSelector);
   }
 
-  get signUpBtn(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.signUpBtnSelector);
+  private async getContainer(){
+    return await ElementWrapper.getElement(this.rootSelector);
+}
+
+  async signUpBtn() {
+    const container = await this.getContainer();
+    return ElementWrapper.getChildElement(container, this.signUpBtnSelector);
   }
 }
 

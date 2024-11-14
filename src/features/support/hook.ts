@@ -7,7 +7,7 @@ async function login() {
   const registrationPage = new RegistrationPage();
   
   await homePage.open();
-  const signInBtn= await homePage.headerHomeComponent.signInBtn;
+  const signInBtn= await homePage.headerHomeComponent.signInBtn();
   signInBtn.click();
 
   await browser.waitUntil(async () => (await browser.getUrl()).includes(url.login), {

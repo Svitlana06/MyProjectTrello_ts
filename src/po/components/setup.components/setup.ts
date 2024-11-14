@@ -6,7 +6,7 @@ type SubmitButtons = 'continue' | 'next' | 'skip';
 
 class SetupComponent extends BaseComponent {
 
-  private readonly initialSettingsSelectors: { [key in InitialSettings]: string } = {
+  private initialSettingsSelectors: { [key in InitialSettings]: string } = {
     goal: '//p[contains(text(), "Упорядкування ідей")]',
     board: '#boardName',
     listFirst: '#list1',
@@ -16,29 +16,35 @@ class SetupComponent extends BaseComponent {
     cardSecond: '#card2',
   };
 
-  private readonly submitBtnSelectors: { [key in SubmitButtons]: string } = {
+  private submitBtnSelectors: { [key in SubmitButtons]: string } = {
     continue: '//button[text()="Продовжити"]',
     next: '//button[text()="Далі"]',
     skip: '//button[text()="Пропустити"]',
   };
 
-  private readonly specialOffer: string ='//span[text()="Спеціальна пропозиція!"]'
+  private specialOffer: string ='//span[text()="Спеціальна пропозиція!"]'
 
-  public constructor() {
-    const rootSelector = '.nvfJSf_0WwLXsm';
+  public constructor(public rootSelector: string ='.nvfJSf_0WwLXsm') {
     super(rootSelector);
   }
 
-  async initialSettings(name: keyof typeof this.initialSettingsSelectors): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.initialSettingsSelectors[name]);
+  private async getContainer(){
+    return await ElementWrapper.getElement(this.rootSelector);
+}
+
+  async initialSettings(name: keyof typeof this.initialSettingsSelectors){
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.initialSettingsSelectors[name]);
   }
 
-  async submitBtn(name: keyof typeof this.submitBtnSelectors): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.submitBtnSelectors[name]);
+  async submitBtn(name: keyof typeof this.submitBtnSelectors){
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.submitBtnSelectors[name]);
   }
 
-  async premiumVersionOffer(): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.specialOffer);
+  async premiumVersionOffer(){
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.specialOffer);
   }
 }
 

@@ -5,12 +5,11 @@ type RegistrationFields = 'email' | 'username' | 'password';
 type SubmitButtons = 'signUp' | 'signIn';
 
 class RegistrationComponent extends BaseComponent {
-  public constructor() {
-    const rootSelector = '#WhiteboxContainer';
+  public constructor(public rootSelector: string ='#WhiteboxContainer') {
     super(rootSelector);
   }
 
-  private readonly selectors: { [key in RegistrationFields | SubmitButtons]: string } = {
+  private selectors: { [key in RegistrationFields | SubmitButtons]: string } = {
     email: '#email',
     username: '#username',
     password: '#password',
@@ -18,16 +17,22 @@ class RegistrationComponent extends BaseComponent {
     signIn: '#login-submit',
   };
 
-  async input(name: RegistrationFields): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.selectors[name]);
+  private async getContainer(){
+    return await ElementWrapper.getElement(this.rootSelector);
+}
+  async input(name: RegistrationFields) {
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.selectors[name]);
   }
 
-  async submitBtn(name: SubmitButtons): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.selectors[name]);
+  async submitBtn(name: SubmitButtons) {
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.selectors[name]);
   }
 
-  async getChildElement(childLocator: string): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, childLocator);
+  async getChildElement(childLocator: string){
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, childLocator);
   }
 }
 

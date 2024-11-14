@@ -7,27 +7,32 @@ type SettingsType = 'account' | 'profile';
 
 class AccountWindowComponent extends BaseComponent {
   
-  private readonly userSelectors: { [key in UserType]: string } = {
+  private userSelectors: { [key in UserType]: string } = {
     newUser: `//h2[text()="Обліковий запис"]//ancestor::div//div[text()="${inputData.emailSignUp}"]`,
     existedUser: `//h2[text()="Обліковий запис"]//ancestor::div//div[text()="${inputData.emailLogIn}"]`,
   };
 
-  private readonly settingsSelectors: { [key in SettingsType]: string } = {
+  private settingsSelectors: { [key in SettingsType]: string } = {
     account: '//*[@data-testid="account-menu-settings"]',
     profile: '//*[@data-testid="account-menu-profile"]',
   };
 
-  constructor() {
-    const rootSelector = '//*[@data-testid="header-member-menu-popover"]';
+  constructor( public rootSelector: string ='//*[@data-testid="header-member-menu-popover"]') {
     super(rootSelector);
   }
 
-  async checkUser(name: UserType): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.userSelectors[name]);
+  private async getContainer(){
+    return await ElementWrapper.getElement(this.rootSelector);
+}
+
+  async checkUser(name: UserType){
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.userSelectors[name]);
   }
 
-  async settingsBtn(name: SettingsType): Promise<WebdriverIO.Element> {
-    return await ElementWrapper.getChildElement(this.rootSelector, this.settingsSelectors[name]);
+  async settingsBtn(name: SettingsType) {
+    const container = await this.getContainer();
+    return await ElementWrapper.getChildElement(container, this.settingsSelectors[name]);
   }
 }
 

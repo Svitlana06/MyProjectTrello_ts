@@ -3,20 +3,25 @@ import ElementWrapper from '../wrapper.ts';
 
 class FilterComponent extends BaseComponent {
   
-  private readonly openBtnSelector: string = '//*[@data-testid="filter-popover-button"]';
-  private readonly selectEndDatePropertySelector: string = '//div[contains(@title, "Протерміновано")]';
+  private  openBtnSelector: string = '//*[@data-testid="filter-popover-button"]';
+  private selectEndDatePropertySelector: string = '//div[contains(@title, "Протерміновано")]';
 
-  constructor() {
-    const rootSelector = '#board';
+  constructor(public rootSelector: string = '#board') {
     super(rootSelector);
   }
 
-  get openBtn(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.openBtnSelector);
+  private async getContainer(){
+    return await ElementWrapper.getElement(this.rootSelector);
+}
+
+  async openBtn(){
+    const container = await this.getContainer();
+    return ElementWrapper.getChildElement(container, this.openBtnSelector);
   }
 
-  get selectEndDateProperty(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.selectEndDatePropertySelector);
+  async selectEndDateProperty(){
+    const container = await this.getContainer();
+    return ElementWrapper.getChildElement(container, this.selectEndDatePropertySelector);
   }
 }
 

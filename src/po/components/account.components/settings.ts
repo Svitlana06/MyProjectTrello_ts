@@ -2,25 +2,31 @@ import BaseComponent from '../common.components/base.ts';
 import ElementWrapper from '../wrapper.ts';
 
 class SettingsComponent extends BaseComponent {
-  private readonly openFrequencySelector: string = '//label[text()="Частота"]/following-sibling::*';
-  private readonly changeFrequencySelector: string = '//li[text()="Періодично"]';
-  private readonly checkFrequencySelector: string = '//label[text()="Частота"]/following-sibling::div//div';
+  private openFrequencySelector: string = '//label[text()="Частота"]/following-sibling::*';
+  private changeFrequencySelector: string = '//li[text()="Періодично"]';
+  private checkFrequencySelector: string = '//label[text()="Частота"]/following-sibling::div//div';
 
-  constructor() {
-    const rootSelector = '.tabbed-pane-main-col.u-clearfix.mod-wider';
+  constructor(public rootSelector: string ='.tabbed-pane-main-col.u-clearfix.mod-wider') {
     super(rootSelector);
   }
 
-  get openFrequencyProperty(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.openFrequencySelector);
+  private async getContainer(){
+    return await ElementWrapper.getElement(this.rootSelector);
+}
+
+  async openFrequencyProperty() {
+    const container = await this.getContainer();
+    return ElementWrapper.getChildElement(container, this.openFrequencySelector);
   }
 
-  get changeFrequency(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.changeFrequencySelector);
+  async changeFrequency() {
+    const container = await this.getContainer();
+    return ElementWrapper.getChildElement(container, this.changeFrequencySelector);
   }
 
-  get checkFrequency(): Promise<WebdriverIO.Element> {
-    return ElementWrapper.getChildElement(this.rootSelector, this.checkFrequencySelector);
+  async checkFrequency(){
+    const container = await this.getContainer();
+    return ElementWrapper.getChildElement(container, this.checkFrequencySelector);
   }
 }
 

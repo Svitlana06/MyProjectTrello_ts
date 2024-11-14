@@ -9,7 +9,7 @@ Given('the Trello sign up page is displayed', async () => {
   await homePage.open();
   
 
-  const signUpBtn = await homePage.mainComponent.signUpBtn; 
+  const signUpBtn = await homePage.mainComponent.signUpBtn(); 
   await signUpBtn.click(); 
   
   await browser.waitUntil(
