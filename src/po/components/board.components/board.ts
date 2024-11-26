@@ -1,5 +1,5 @@
 import BaseComponent from '../common.components/base.ts';
-import ElementWrapper from '../wrapper.ts';
+import {ElementWrapper} from '../wrapper.ts';
 import { valuesForFields } from '../../../data/data.ts';
 
 type CreateType = 'list' | 'card';
@@ -35,28 +35,24 @@ class BoardComponent extends BaseComponent {
     super(rootSelector);
   }
 
-  private async getContainer(){
-    return await ElementWrapper.getElement(this.rootSelector);
-}
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector, this.rootSelector);
+  }
 
   async createBtn(name: CreateType){
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.createSelectors[name]);
+    return await this.container.getChildElement(this.createSelectors[name]);
   }
 
   async addBtn(name: AddType) {
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.addSelectors[name]);
+    return await this.container.getChildElement(this.addSelectors[name]);
   }
 
   async input(name: InputType){
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.inputSelectors[name]);
+    return await this.container.getChildElement(this.inputSelectors[name]);
   }
 
   async check(name: CheckType){
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.checkSelectors[name]);
+    return await this.container.getChildElement(this.checkSelectors[name]);
   }
 }
 

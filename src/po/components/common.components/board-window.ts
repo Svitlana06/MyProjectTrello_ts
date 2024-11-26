@@ -1,5 +1,5 @@
 import BaseComponent from './base.ts';
-import ElementWrapper from '../wrapper.ts';
+import {ElementWrapper} from '../wrapper.ts';
 
 type SettingsName = 'name' | 'type';
 
@@ -16,18 +16,16 @@ class BoardWindowComponent extends BaseComponent {
     super(rootSelector);
   }
 
-  private async getContainer(){
-    return await ElementWrapper.getElement(this.rootSelector);
-}
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector, this.rootSelector);
+  }
 
   async settings(name: SettingsName) {
-    const container = await this.getContainer();
-    return ElementWrapper.getChildElement(container, this.settingsSelectors[name]);
+    return this.container.getChildElement(this.settingsSelectors[name]);
   }
 
   async submitBtn(){
-    const container = await this.getContainer();
-    return ElementWrapper.getChildElement(container, this.submitBtnSelector);
+    return this.container.getChildElement(this.submitBtnSelector);
   }
 }
 

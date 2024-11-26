@@ -15,6 +15,7 @@ import AccountWindowComponent from './board.components/account-window.ts';
 import BoardWindowComponent from './common.components/board-window.ts';
 import SearchWindowComponent  from './common.components/search-window.ts';
 
+
 export {
   HeaderHomeComponent,
   ProfileVisabilityComponent,

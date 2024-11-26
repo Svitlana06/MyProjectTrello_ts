@@ -8,8 +8,8 @@ async function signIn() { // в ліби в хелпер функції; ще п
         let registrationPage: RegistrationPage;
         registrationPage = new RegistrationPage();
         await homePage.open();
-        const signInBtn = await homePage.headerHomeComponent.signInBtn;
-        signInBtn.click()
+        const signInBtn = await homePage.headerHomeComponent.signInBtn();
+        await signInBtn.click()
 
         await browser.waitUntil(
             async () => {
@@ -18,24 +18,21 @@ async function signIn() { // в ліби в хелпер функції; ще п
             { timeout: 10000 }
         );
 
-        await registrationPage
-            .registrationComponent.input('username')
-            .setValue(inputData.emailLogIn);
-        await registrationPage.registrationComponent.submitBtn('signIn').click();
+        const usernameInput = await registrationPage.registrationComponent.input('username');
+        await usernameInput.setValue(inputData.emailLogIn);
+        const signInButton = await registrationPage.registrationComponent.submitBtn('signIn');
+        await signInButton.click();
 
         await browser.waitUntil(
-            async () => {
-                return await registrationPage
-                    .registrationComponent.input('password')
-                    .isDisplayed();
-            },
-            { timeout: 10000 }
-        );
+            async () => await (await registrationPage.registrationComponent.input('password')).isDisplayed(),
+            { timeout: 100000 }
+          );
 
-        await registrationPage
-            .registrationComponent.input('password')
-            .setValue(inputData.password);
-        await registrationPage.registrationComponent.submitBtn('signIn').click();
+          const passwordInput = await registrationPage.registrationComponent.input('password');
+          await passwordInput.setValue(inputData.password);
+          
+          const signInButtonAgain = await registrationPage.registrationComponent.submitBtn('signIn');
+          await signInButtonAgain.click();
 
         await browser.waitUntil(
             async () => {

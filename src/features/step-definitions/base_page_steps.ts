@@ -31,7 +31,7 @@ When('I add a new board', async () => {
   const nameInput = await basePage.boardWindowComponent.settings('name');
   await nameInput.setValue(valuesForFields.newBoardName);
   const submitBtn = await basePage.boardWindowComponent.submitBtn();
-  await submitBtn.waitForDisplayed();
+  await submitBtn.waitForDisplayed({ timeout: 12000 });;
   await submitBtn.click();
 
   await browser.waitUntil(

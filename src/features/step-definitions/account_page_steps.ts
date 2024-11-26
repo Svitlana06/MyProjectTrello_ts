@@ -17,11 +17,14 @@ When('I update workspace details', async () => {
   await changeFrequency.waitForExist({
     timeout: 10000,
   });
+
+
+  
   await changeFrequency.click();
 });
 
 When('I update my profile information', async () => {
-  const usernameInput = await accountPage.profileVisabilityComponent.changeUsername();
+  const usernameInput = await accountPage.profileVisabilityComponent.changeUsername;
   await usernameInput.setValue(valuesForFields.newUserName);
   
   const saveButton = await accountPage.profileVisabilityComponent.saveBtn();

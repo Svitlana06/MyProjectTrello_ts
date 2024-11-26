@@ -1,5 +1,5 @@
 import BaseComponent from '../common.components/base.ts';
-import ElementWrapper from '../wrapper.ts';
+import {ElementWrapper} from '../wrapper.ts';
 
 type RegistrationFields = 'email' | 'username' | 'password';
 type SubmitButtons = 'signUp' | 'signIn';
@@ -17,22 +17,19 @@ class RegistrationComponent extends BaseComponent {
     signIn: '#login-submit',
   };
 
-  private async getContainer(){
-    return await ElementWrapper.getElement(this.rootSelector);
-}
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector, this.rootSelector);
+  }
   async input(name: RegistrationFields) {
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.selectors[name]);
+    return await this.container.getChildElement(this.selectors[name]);
   }
 
   async submitBtn(name: SubmitButtons) {
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.selectors[name]);
+    return await this.container.getChildElement(this.selectors[name]);
   }
 
   async getChildElement(childLocator: string){
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, childLocator);
+    return await this.container.getChildElement(childLocator);
   }
 }
 

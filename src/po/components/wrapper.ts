@@ -1,51 +1,62 @@
-// додати для множини елементів а не 1 (масив наприклад)
- // додати вейтери елементів
-  // для аксіоса обгортку створити - клас загальний - інший
+import { ChainablePromiseElement } from 'webdriverio';
 
-  class ElementWrapper {
+class ElementWrapper {
+  private element: ChainablePromiseElement<WebdriverIO.Element>;
+  private locator: string;
 
-    public static async getElements(locator: string): Promise<WebdriverIO.Element[]> {
-      await browser.waitUntil(async () => {
-        const elements = await $$(locator);
-        return elements.length > 0;
-      }, {
-        timeout: 5000,
-        timeoutMsg: 'Elements not found'
-      });
-  
-      const elements = await $$(locator);
-      return elements as unknown as WebdriverIO.Element[];
-    }
-  
-    public static async getElement(locator: string): Promise<WebdriverIO.Element> {
-      const elements = await this.getElements(locator);
-      if (elements.length === 0) {
-        throw new Error(`Element not found: ${locator}`);
-      }
-      
-      const element = elements[0];
-      await browser.waitUntil(async () => {
-        return await element.isDisplayed();
-      }, {
-        timeout: 5000,
-        timeoutMsg: `Element not visible: ${locator}`
-      });
-  
-      return element;
-    }
-  
-    public static async getChildElement(parentElement: WebdriverIO.Element, childLocator: string): Promise<WebdriverIO.Element> {
-      await browser.waitUntil(async () => {
-        const childElement = await parentElement.$(childLocator);
-        return await childElement.isDisplayed();
-      }, {
-        timeout: 5000,
-        timeoutMsg: `Child element not found within parent`
-      });
-  
-      return await parentElement.$(childLocator);
-    }
+  constructor(element: string | WebdriverIO.Element, locator: string) {
+    // ланцюговий метод виклюків промісів
+    this.element = (typeof element === 'string' ? $(element) : element) as ChainablePromiseElement<WebdriverIO.Element>;
+    this.locator = locator;
   }
-  
-  export default ElementWrapper;
-  
+
+
+  public static getElement(
+    element: string | WebdriverIO.Element, locator: string ): ElementWrapper {
+    return new ElementWrapper(element, locator);
+  }
+
+  private async getChild(childSelector: string | WebdriverIO.Element): Promise<ChainablePromiseElement<WebdriverIO.Element>> {
+    const elementInstance = await this.element;
+    return elementInstance.$(childSelector);
+  }
+
+  public async getChildElement(childLocator: string): Promise<ElementWrapper> {
+    const fullSelector = `${this.locator} ${childLocator}`;
+    const childElement = await this.getChild(childLocator);
+    return ElementWrapper.getElement(childElement, fullSelector);  //обгорнутий дочірній елемент
+  }
+
+
+  public async click(): Promise<void> { // PROXY
+    const element = await this.element; 
+    await element.click();
+  }
+
+  public async setValue(value: string): Promise<void> {
+    const element = await this.element;
+    await element.setValue(value);
+  }
+
+  public async isDisplayed(): Promise<boolean> {
+    const element = await this.element;
+    return element.isDisplayed(); 
+  }
+
+  public async getText(): Promise<string> {
+    const element = await this.element;
+    return element.getText();
+  }
+
+  public async waitForExist(p0: { timeout: number; }): Promise<string> {
+    const element = await this.element;
+    return element.waitForExist();
+  }
+
+  public async waitForDisplayed(p0: { timeout: number; }): Promise<string> {
+    const element = await this.element;
+    return element.getText();
+  }
+}
+
+export { ElementWrapper };

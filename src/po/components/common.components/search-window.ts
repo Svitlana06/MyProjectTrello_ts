@@ -1,5 +1,5 @@
 import BaseComponent from './base.ts';
-import ElementWrapper from '../wrapper.ts';
+import {ElementWrapper} from '../wrapper.ts';
 
 class SearchWindowComponent extends BaseComponent {
   
@@ -9,13 +9,11 @@ class SearchWindowComponent extends BaseComponent {
     super(rootSelector);
   }
 
-  private async getContainer(){
-    return await ElementWrapper.getElement(this.rootSelector);
-}
-
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector, this.rootSelector);
+  }
   async openResultsBtn(){
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.openResultsBtnSelector);
+    return await this.container.getChildElement(this.openResultsBtnSelector);
   }
 }
 

@@ -1,48 +1,38 @@
-// в параметри конструктора додати локатор super - у всіх файлах
-// окрема змінна для кожного селектора - у всіх файлах - не впевнена стосовно всіх
-// забрати типізацію методів - у всіх файлах
-// змінити на класи динамічний селектор
-// додати метод враперу - у всіх файлах
-
 import BaseComponent from '../common.components/base.ts';
-import ElementWrapper from '../wrapper.ts'; 
+import {ElementWrapper}  from '../wrapper.ts';
 import { valuesForFields } from '../../../data/data.ts';
 
 class ProfileVisibilityComponent extends BaseComponent {
-  
-    private saveButtonLocator: string = '//button[text()="Зберегти"]';
-    private usernameContainerLocator: string = '#username';
-    private usernameXPath: string = '.M7DuYRS8ksp5f8';
-  
-    public constructor(public rootSelector: string = '#content') {
-        super(rootSelector);
-    }
-  
-    private async getContainer(){
-        return await ElementWrapper.getElement(this.rootSelector);
-    }
+  public saveButtonLocator = '//button[text()="Зберегти"]';
+  public usernameContainerLocator = '#username';
+  public usernameXPath = '.M7DuYRS8ksp5f8';
 
-    async changeUsername() {
-        const container = await this.getContainer();
-        return await ElementWrapper.getChildElement(container, this.usernameContainerLocator);
-    }
 
-    async saveBtn(){
-        const container = await this.getContainer();
-        return await ElementWrapper.getChildElement(container, this.saveButtonLocator);
-    }
+  public constructor(public rootSelector = '#content') {
+    super(rootSelector);
+  }
 
-    async getNewUsername() {
-        return await this.getUsernameElement(valuesForFields.username);
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector, this.rootSelector);
+  }
 
-    }
+  get changeUsername() {
+    return this.container.getChildElement(this.usernameContainerLocator);
+  }
 
-    async getUsernameElement(username: string): Promise<WebdriverIO.Element> {
-      const container = await this.getContainer();
-      return await ElementWrapper.getChildElement(container, this.usernameXPath);
-        
-    }
+
+  public async saveBtn() {
+    return await this.container.getChildElement(this.saveButtonLocator);
+  }
+
+
+  public async getNewUsername() {
+    return await this.getUsernameElement(valuesForFields.username); 
+  }
+
+  public async getUsernameElement(username: string) {
+    return await this.container.getChildElement(this.usernameXPath);
+  }
 }
 
 export default ProfileVisibilityComponent;
-

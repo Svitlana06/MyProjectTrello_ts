@@ -1,5 +1,5 @@
 import BaseComponent from '../common.components/base.ts';
-import ElementWrapper from '../wrapper.ts';
+import {ElementWrapper} from '../wrapper.ts';
 
 class SettingsComponent extends BaseComponent {
   private openFrequencySelector: string = '//label[text()="Частота"]/following-sibling::*';
@@ -10,23 +10,20 @@ class SettingsComponent extends BaseComponent {
     super(rootSelector);
   }
 
-  private async getContainer(){
-    return await ElementWrapper.getElement(this.rootSelector);
-}
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector, this.rootSelector);
+  }
 
   async openFrequencyProperty() {
-    const container = await this.getContainer();
-    return ElementWrapper.getChildElement(container, this.openFrequencySelector);
+    return this.container.getChildElement(this.openFrequencySelector);
   }
 
   async changeFrequency() {
-    const container = await this.getContainer();
-    return ElementWrapper.getChildElement(container, this.changeFrequencySelector);
+    return this.container.getChildElement(this.changeFrequencySelector);
   }
 
   async checkFrequency(){
-    const container = await this.getContainer();
-    return ElementWrapper.getChildElement(container, this.checkFrequencySelector);
+    return this.container.getChildElement(this.checkFrequencySelector);
   }
 }
 

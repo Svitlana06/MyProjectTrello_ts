@@ -1,5 +1,5 @@
 import BaseComponent from '../common.components/base.ts';
-import ElementWrapper from '../wrapper.ts';
+import {ElementWrapper} from '../wrapper.ts';
 
 type InitialSettings = 'goal' | 'board' | 'listFirst' | 'listSecond' | 'listThird' | 'cardFirst' | 'cardSecond';
 type SubmitButtons = 'continue' | 'next' | 'skip';
@@ -28,23 +28,20 @@ class SetupComponent extends BaseComponent {
     super(rootSelector);
   }
 
-  private async getContainer(){
-    return await ElementWrapper.getElement(this.rootSelector);
-}
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector, this.rootSelector);
+  }
 
   async initialSettings(name: keyof typeof this.initialSettingsSelectors){
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.initialSettingsSelectors[name]);
+    return await this.container.getChildElement(this.initialSettingsSelectors[name]);
   }
 
   async submitBtn(name: keyof typeof this.submitBtnSelectors){
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.submitBtnSelectors[name]);
+    return await this.container.getChildElement(this.submitBtnSelectors[name]);
   }
 
   async premiumVersionOffer(){
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.specialOffer);
+    return await this.container.getChildElement(this.specialOffer);
   }
 }
 

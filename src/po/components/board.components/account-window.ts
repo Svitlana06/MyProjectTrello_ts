@@ -1,5 +1,5 @@
 import BaseComponent from '../common.components/base.ts';
-import ElementWrapper from '../wrapper.ts';
+import {ElementWrapper} from '../wrapper.ts';
 import { inputData } from '../../../data/data.ts';
 
 type UserType = 'newUser' | 'existedUser';
@@ -21,18 +21,16 @@ class AccountWindowComponent extends BaseComponent {
     super(rootSelector);
   }
 
-  private async getContainer(){
-    return await ElementWrapper.getElement(this.rootSelector);
-}
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector, this.rootSelector);
+  }
 
   async checkUser(name: UserType){
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.userSelectors[name]);
+    return await this.container.getChildElement(this.userSelectors[name]);
   }
 
   async settingsBtn(name: SettingsType) {
-    const container = await this.getContainer();
-    return await ElementWrapper.getChildElement(container, this.settingsSelectors[name]);
+    return await this.container.getChildElement(this.settingsSelectors[name]);
   }
 }
 

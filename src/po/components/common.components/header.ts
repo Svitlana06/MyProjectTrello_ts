@@ -1,5 +1,5 @@
 import BaseComponent from './base.ts';
-import ElementWrapper from '../wrapper.ts';
+import {ElementWrapper} from '../wrapper.ts';
 
 class HeaderComponent extends BaseComponent {
   
@@ -11,23 +11,20 @@ class HeaderComponent extends BaseComponent {
     super(rootSelector);
   }
 
-  private async getContainer(){
-    return await ElementWrapper.getElement(this.rootSelector);
-}
+  get container() {
+    return ElementWrapper.getElement(this.rootSelector, this.rootSelector);
+  }
 
   async openAccount() {
-    const container = await this.getContainer();
-    return ElementWrapper.getChildElement(container, this.openAccountSelector);
+    return this.container.getChildElement(this.openAccountSelector);
   }
 
   async addBoardBtn(){
-    const container = await this.getContainer();
-    return ElementWrapper.getChildElement(container, this.addBoardBtnSelector);
+    return this.container.getChildElement(this.addBoardBtnSelector);
   }
 
   async setSearch() {
-    const container = await this.getContainer();
-    return ElementWrapper.getChildElement(container, this.setSearchSelector);
+    return this.container.getChildElement(this.setSearchSelector);
   }
 }
 
